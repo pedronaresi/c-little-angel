@@ -7,3 +7,10 @@ C Little Angel (cla)® is a C- compiler built in C for "Compilers Laboratory" co
 - [Pedro Naresi](https://github.com/pedronaresi)
 
 # How to Run:
+To generate the binary code:
+
+```sh
+./cla.sh
+./cla code/example.c
+```
+Syntatic tree, intermediate code and binary code will be found at ```code/example.txt```.
