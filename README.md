@@ -11,6 +11,6 @@ To generate the binary code:
 
 ```sh
 ./cla.sh
-./cla code/example.c
+./cla example.cmin
 ```
-Syntatic tree, intermediate code and binary code will be found at ```code/example.txt```.
+Syntatic tree, intermediate code and binary code will be found at ```example.txt```.
