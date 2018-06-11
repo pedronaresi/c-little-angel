@@ -39,67 +39,65 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     ELSE = 258,
-     IF = 259,
-     INT = 260,
+     IF = 258,
+     ELSE = 259,
+     WHILE = 260,
      RETURN = 261,
-     VOID = 262,
-     WHILE = 263,
-     ID = 264,
-     NUM = 265,
+     ID = 262,
+     NUM = 263,
+     INT = 264,
+     VOID = 265,
      PLUS = 266,
      MINUS = 267,
      TIMES = 268,
      OVER = 269,
-     LET = 270,
-     LT = 271,
-     LTEQ = 272,
-     GT = 273,
-     GTEQ = 274,
-     ASSIGN = 275,
-     NEQ = 276,
-     EQ = 277,
-     SEMI = 278,
-     COMMA = 279,
-     LPAREN = 280,
-     RPAREN = 281,
-     LBRACK = 282,
-     RBRACK = 283,
-     LBRACE = 284,
-     RBRACE = 285,
-     ERROR = 286
+     LT = 270,
+     LTEQ = 271,
+     GT = 272,
+     GTEQ = 273,
+     ASSIGN = 274,
+     NEQ = 275,
+     EQ = 276,
+     SEMI = 277,
+     COMMA = 278,
+     LPAREN = 279,
+     RPAREN = 280,
+     LBRACK = 281,
+     RBRACK = 282,
+     LBRACE = 283,
+     RBRACE = 284,
+     ERROR = 285
    };
 #endif
 /* Tokens.  */
-#define ELSE 258
-#define IF 259
-#define INT 260
+#define IF 258
+#define ELSE 259
+#define WHILE 260
 #define RETURN 261
-#define VOID 262
-#define WHILE 263
-#define ID 264
-#define NUM 265
+#define ID 262
+#define NUM 263
+#define INT 264
+#define VOID 265
 #define PLUS 266
 #define MINUS 267
 #define TIMES 268
 #define OVER 269
-#define LET 270
-#define LT 271
-#define LTEQ 272
-#define GT 273
-#define GTEQ 274
-#define ASSIGN 275
-#define NEQ 276
-#define EQ 277
-#define SEMI 278
-#define COMMA 279
-#define LPAREN 280
-#define RPAREN 281
-#define LBRACK 282
-#define RBRACK 283
-#define LBRACE 284
-#define RBRACE 285
-#define ERROR 286
+#define LT 270
+#define LTEQ 271
+#define GT 272
+#define GTEQ 273
+#define ASSIGN 274
+#define NEQ 275
+#define EQ 276
+#define SEMI 277
+#define COMMA 278
+#define LPAREN 279
+#define RPAREN 280
+#define LBRACK 281
+#define RBRACK 282
+#define LBRACE 283
+#define RBRACE 284
+#define ERROR 285
 
 
 

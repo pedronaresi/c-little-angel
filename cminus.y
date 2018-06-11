@@ -29,9 +29,10 @@ static TreeNode * insertIOFunctions();
 
 %}
 
-%token ELSE IF INT RETURN VOID WHILE
+%token IF ELSE WHILE RETURN
 %token ID NUM
-%token PLUS MINUS TIMES OVER LET LT LTEQ GT GTEQ ASSIGN NEQ EQ SEMI COMMA LPAREN
+%token INT VOID
+%token PLUS MINUS TIMES OVER LT LTEQ GT GTEQ ASSIGN NEQ EQ SEMI COMMA LPAREN
 RPAREN LBRACK RBRACK LBRACE RBRACE
 %token ERROR
 
@@ -64,7 +65,7 @@ var_declaration     	: type_specifier id SEMI
 				$$ = $1;
 				$$->child[0] = $2;
 				$$->child[0]->type = $$->type;
-                $$->child[0]->varMemK = LocalK;
+        $$->child[0]->varMemK = LocalK;
 			}
             		| type_specifier id LBRACK num RBRACK SEMI
 			{
@@ -72,7 +73,7 @@ var_declaration     	: type_specifier id SEMI
 				$$->child[0] = $2;
 				$$->child[0]->kind.exp = VectorK;
 				$$->child[0]->type = $$->type;
-                $$->child[0]->varMemK = LocalK;
+        $$->child[0]->varMemK = LocalK;
 				$$->child[0]->child[0] = $4;
 				$$->child[0]->child[0]->type = Integer;
 			}
