@@ -17,6 +17,27 @@
 #include <ctype.h>
 #include <string.h>
 
+/* Yacc/Bison generates internally its own values
+ * for the tokens. Other files can access these values
+ * by including the tab.h file generated using the
+ * Yacc/Bison option -d ("generate header")
+ *
+ * The YYPARSER flag prevents inclusion of the tab.h
+ * into the Yacc/Bison output itself
+ */
+
+#ifndef YYPARSER
+
+/* the name of the following file may change */
+#include "cminus.tab.h"
+
+/* ENDFILE is implicitly defined by Yacc/Bison,
+ * and not included in the tab.h file
+ */
+#define ENDFILE 0
+
+#endif
+
 #ifndef FALSE
 #define FALSE 0
 #endif
@@ -28,17 +49,10 @@
 /* MAXRESERVED = the number of reserved words */
 #define MAXRESERVED 8
 
-typedef enum
-    /* book-keeping tokens */
-   {ENDFILE,ERROR,
-    /* reserved words */
-    ELSE,IF,INT,RETURN,VOID,WHILE,
-    /* multicharacter tokens */
-    ID,NUM,
-    /* special symbols */
-    PLUS,MINUS,TIMES,OVER,LET,LT,LTEQ,GT,GTEQ,ASSIGN,NEQ,EQ,SEMI,COMMA,LPAREN,RPAREN,
-    LBRACK,RBRACK,LBRACE,RBRACE
-   } TokenType;
+/* Yacc/Bison generates its own integer values
+ * for tokens
+ */
+typedef int TokenType;
 
 extern FILE* source; /* source code text file */
 extern FILE* listing; /* listing output text file */
@@ -51,25 +65,35 @@ extern int lineno; /* source line number for listing */
 /**************************************************/
 
 typedef enum {StmtK,ExpK} NodeKind;
-typedef enum {IfK,RepeatK,AssignK,ReadK,WriteK} StmtKind;
-typedef enum {OpK,ConstK,IdK} ExpKind;
+typedef enum {IntegerK, VoidK, IfK, ElseK, ReturnK, WhileK, CompK} StmtKind;
+typedef enum {OpK, ConstK, IdK, VectorK, FunctionK, CallK, IndexK} ExpKind;
+typedef enum {DeclaringK, AccessingK} VarAccessK;
+typedef enum {ParamK, LocalK, GlobalK, FUNCTIONK} VarMemK;
 
 /* ExpType is used for type checking */
 typedef enum {Void,Integer,Boolean} ExpType;
 
 #define MAXCHILDREN 3
 
-typedef struct treeNode
-   { struct treeNode * child[MAXCHILDREN];
-     struct treeNode * sibling;
-     int lineno;
-     NodeKind nodekind;
-     union { StmtKind stmt; ExpKind exp;} kind;
-     union { TokenType op;
-             int val;
-             char * name; } attr;
-     ExpType type; /* for type checking of exps */
-   } TreeNode;
+typedef struct treeNode {
+    struct treeNode * child[MAXCHILDREN];
+    struct treeNode * sibling;
+    int lineno;
+    VarAccessK varAccess;
+    VarMemK varMemK;
+    NodeKind nodekind;
+    union {
+        StmtKind stmt;
+	    ExpKind exp;
+    } kind;
+    struct {
+        TokenType op;
+        int val;
+        char * name;
+    } attr;
+    struct ScopeRec * scope;
+    ExpType type; /* for type checking of exps */
+} TreeNode;
 
 /**************************************************/
 /***********   Flags for tracing       ************/

@@ -1,6 +1,6 @@
 //  C Little Angel (cla)®
 //
-//  scan.c
+//  scan.h
 //  The scanner interface for the C- compiler.
 //
 //  C- compiler based on Compiler Construction Principles and Practice by
