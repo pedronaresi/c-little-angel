@@ -48,20 +48,22 @@ int TraceAnalyze = TRUE;
 int TraceCode = FALSE;
 
 int Error = FALSE;
+int intermediateCodeGenerated = FALSE;
+int objectCodeGenerated = FALSE;
 
-int main( int argc, char * argv[] )
-{ TreeNode * syntaxTree;
+int main(int argc, char * argv[]) {
+  TreeNode * syntaxTree;
   char pgm[120]; /* source code file name */
-  if (argc != 2)
-    { fprintf(stderr,"usage: %s <filename>\n",argv[0]);
-      exit(1);
+  if (argc != 2) {
+    fprintf(stderr,"usage: %s <filename>\n",argv[0]);
+    exit(1);
     }
   strcpy(pgm,argv[1]) ;
   if (strchr (pgm, '.') == NULL)
-     strcat(pgm,".tny");
+    strcat(pgm,".cmin");
   source = fopen(pgm,"r");
-  if (source==NULL)
-  { fprintf(stderr,"File %s not found\n",pgm);
+  if (source==NULL) {
+    fprintf(stderr,"File %s not found\n",pgm);
     exit(1);
   }
   listing = stdout; /* send listing to screen */
@@ -75,27 +77,35 @@ int main( int argc, char * argv[] )
     printTree(syntaxTree);
   }
 #if !NO_ANALYZE
-  if (! Error)
-  { if (TraceAnalyze) fprintf(listing,"\nBuilding Symbol Table...\n");
+  if (! Error) {
+    if (TraceAnalyze)
+      fprintf(listing,"\nBuilding Symbol Table...\n");
     buildSymtab(syntaxTree);
-    if (TraceAnalyze) fprintf(listing,"\nChecking Types...\n");
+    if (TraceAnalyze)
+      fprintf(listing,"\nChecking Types...\n");
     typeCheck(syntaxTree);
-    if (TraceAnalyze) fprintf(listing,"\nType Checking Finished\n");
+    if (TraceAnalyze)
+      fprintf(listing,"\nType Checking Finished\n");
   }
 #if !NO_CODE
-  if (! Error)
-  { char * codefile;
+  if (! Error) {
+    char * codefile;
     int fnlen = strcspn(pgm,".");
     codefile = (char *) calloc(fnlen+4, sizeof(char));
-    strncpy(codefile,pgm,fnlen);
-    strcat(codefile,".tm");
+    strncpy(codefile, pgm, fnlen);
+    strcat(codefile,".txt");
     code = fopen(codefile,"w");
-    if (code == NULL)
-    { printf("Unable to open %s\n",codefile);
+    if (code == NULL) {
+      printf("Unable to open %s\n",codefile);
       exit(1);
     }
-    codeGen(syntaxTree,codefile);
+    if (TraceCode)
+      fprintf(listing, "\nGenerating Intermediate Code...\n");
+    codeGen(syntaxTree, codefile);
     fclose(code);
+    if (TraceCode)
+      fprintf(listing, "\nIntermediate Code generation finished!\n");
+    intermediateCodeGenerated = TRUE;
   }
 #endif
 #endif
