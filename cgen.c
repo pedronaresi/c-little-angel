@@ -296,7 +296,7 @@ static void genExp(TreeNode * tree) {
             /* Cria e insere uma nova representação em código intermediário, mas
              * somente se estiver acessando o vetor
              */
-            if(tree->varAccess == ACESSANDO) {
+            if(tree->varAccess == AccessingK) {
                 // Guarda a última instrução para manipular em caso de acesso ao endereço do vetor
                 ultimaQuadrupla = createQuad(instrucaoAtual, op1, op2, op3);
                 insertQuad(ultimaQuadrupla);
@@ -389,7 +389,7 @@ static void genExp(TreeNode * tree) {
             break;
 
         case OpK:
-            if(tree->attr.op == ATRIBUICAO) {
+            if(tree->attr.op == ASSIGN) {
 
                 emitComment("-> assign", indent);
                 p1 = tree->child[0];
@@ -450,52 +450,52 @@ static void genExp(TreeNode * tree) {
                 emitComment("<- arithmetic operator: right argument", indent);
 
                 switch (tree->attr.op) {
-                    case MAIS:
+                    case PLUS:
                         emitComment("arithmetic operator: +", indent);
                         /* Atribui o tipo de instrução */
                         instrucaoAtual = ADD;
                         break;
-                    case MENOS:
+                    case MINUS:
                         emitComment("arithmetic operator: -", indent);
                         /* Atribui o tipo de instrução */
                         instrucaoAtual = SUB;
                         break;
-                    case VEZES:
+                    case TIMES:
                         emitComment("arithmetic operator: *", indent);
                         /* Atribui o tipo de instrução */
                         instrucaoAtual = MULT;
                         break;
-                    case DIVISAO:
+                    case OVER:
                         emitComment("arithmetic operator: /", indent);
                         /* Atribui o tipo de instrução */
                         instrucaoAtual = DIV;
                         break;
-                    case MENOR:
+                    case LT:
                         emitComment("relational operator: <", indent);
                         /* Atribui o tipo de instrução */
                         instrucaoAtual = LT;
                         break;
-                    case MENORIGUAL:
+                    case LTEQ:
                         emitComment("relational operator: <=", indent);
                         /* Atribui o tipo de instrução */
                         instrucaoAtual = LET;
                         break;
-                    case MAIOR:
+                    case GT:
                         emitComment("relational operator: >", indent);
                         /* Atribui o tipo de instrução */
                         instrucaoAtual = GT;
                         break;
-                    case MAIORIGUAL:
+                    case GTEQ:
                         emitComment("relational operator: >=", indent);
                         /* Atribui o tipo de instrução */
                         instrucaoAtual = GET;
                         break;
-                    case IGUAL:
+                    case EQ:
                         emitComment("relational operator: ==", indent);
                         /* Atribui o tipo de instrução */
                         instrucaoAtual = EQ;
                         break;
-                    case DIFERENTE:
+                    case NEQ:
                         emitComment("relational operator: !=", indent);
                         /* Atribui o tipo de instrução */
                         instrucaoAtual = NE;

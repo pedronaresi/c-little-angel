@@ -48,10 +48,10 @@ FILE * code;
 
 // Allocate and set tracing flags
 int EchoSource = FALSE;
-int TraceScan = FALSE;
+int TraceScan = TRUE;
 int TraceParse = TRUE;
 int TraceAnalyze = TRUE;
-int TraceCode = FALSE;
+int TraceCode = TRUE;
 int TraceTarget = TRUE;
 int TraceBinary = TRUE;
 
