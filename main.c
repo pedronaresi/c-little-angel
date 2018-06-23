@@ -17,7 +17,7 @@
 #define NO_ANALYZE FALSE
 
 // Set NO_CODE to TRUE to get a compiler that does not generate code.
-#define NO_CODE TRUE
+#define NO_CODE FALSE
 
 // Set NO_TARGET_CODE to TRUE to get a compiler that does not generate
 // object code.
@@ -89,7 +89,7 @@ int main(int argc, char * argv[]) {
     printTree(syntaxTree);
   }
 #if !NO_ANALYZE
-  if (! Error) {
+  if (!Error) {
     if (TraceAnalyze)
       fprintf(listing,"\nBuilding Symbol Table...\n");
     buildSymtab(syntaxTree);
@@ -100,7 +100,7 @@ int main(int argc, char * argv[]) {
       fprintf(listing,"\nType Checking Finished\n");
   }
 #if !NO_CODE
-  if (! Error) {
+  if (!Error) {
     char * codefile;
     int fnlen = strcspn(pgm,".");
     codefile = (char *) calloc(fnlen+4, sizeof(char));

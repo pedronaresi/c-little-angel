@@ -1,0 +1,917 @@
+# C- compilation for the intermediate code
+# File: example.txt
+    # -> type int
+        # -> function declaration
+        # input
+        # <- function declaration
+    # <- type int
+
+    # -> type void
+        # -> function declaration
+        # output
+        # <- function declaration
+    # <- type void
+
+    # -> type int
+        # -> vector
+        # vet
+        # -> vector: position
+            # -> constant
+            # 10
+            # <- constant
+        # <- vector: position
+        # <- vector
+    # <- type int
+
+    # -> type int
+        # -> function declaration
+        # minloc
+                # -> type int
+                    # -> identifier
+                    # i
+                    # <- identifier
+                # <- type int
+
+                # -> type int
+                    # -> identifier
+                    # x
+                    # <- identifier
+                # <- type int
+
+                # -> type int
+                    # -> identifier
+                    # k
+                    # <- identifier
+                # <- type int
+
+                # -> arithmetic operator
+                # -> arithmetic operator: left argument
+                    # -> identifier
+                    # k
+                    # <- identifier
+                # <- arithmetic operator: left argument
+                # -> arithmetic operator: right argument
+                    # -> identifier
+                    # low
+                    # <- identifier
+                # <- arithmetic operator: right argument
+                # relational operator: ==
+                # <- Operator
+                # -> arithmetic operator
+                # -> arithmetic operator: left argument
+                    # -> identifier
+                    # x
+                    # <- identifier
+                # <- arithmetic operator: left argument
+                # -> arithmetic operator: right argument
+                    # -> vector
+                    # a
+                    # -> vector: position
+                        # -> identifier
+                        # low
+                        # <- identifier
+                    # <- vector: position
+                    # <- vector
+                # <- arithmetic operator: right argument
+                # relational operator: ==
+                # <- Operator
+                # -> arithmetic operator
+                # -> arithmetic operator: left argument
+                    # -> identifier
+                    # i
+                    # <- identifier
+                # <- arithmetic operator: left argument
+                # -> arithmetic operator: right argument
+                    # -> arithmetic operator
+                    # -> arithmetic operator: left argument
+                        # -> identifier
+                        # low
+                        # <- identifier
+                    # <- arithmetic operator: left argument
+                    # -> arithmetic operator: right argument
+                        # -> constant
+                        # 1
+                        # <- constant
+                    # <- arithmetic operator: right argument
+                    # arithmetic operator: +
+                    # <- Operator
+                # <- arithmetic operator: right argument
+                # relational operator: ==
+                # <- Operator
+                # -> while
+                # -> while: test expression
+                    # -> arithmetic operator
+                    # -> arithmetic operator: left argument
+                        # -> identifier
+                        # i
+                        # <- identifier
+                    # <- arithmetic operator: left argument
+                    # -> arithmetic operator: right argument
+                        # -> identifier
+                        # high
+                        # <- identifier
+                    # <- arithmetic operator: right argument
+                    # relational operator: <
+                    # <- Operator
+                # <- while: test expression
+                # -> while: while block
+                        # -> if
+                        # -> if: test expression
+                            # -> arithmetic operator
+                            # -> arithmetic operator: left argument
+                                # -> vector
+                                # a
+                                # -> vector: position
+                                    # -> identifier
+                                    # i
+                                    # <- identifier
+                                # <- vector: position
+                                # <- vector
+                            # <- arithmetic operator: left argument
+                            # -> arithmetic operator: right argument
+                                # -> identifier
+                                # x
+                                # <- identifier
+                            # <- arithmetic operator: right argument
+                            # relational operator: <
+                            # <- Operator
+                        # <- if: test expression
+                        # -> if: if block
+                                # -> arithmetic operator
+                                # -> arithmetic operator: left argument
+                                    # -> identifier
+                                    # x
+                                    # <- identifier
+                                # <- arithmetic operator: left argument
+                                # -> arithmetic operator: right argument
+                                    # -> vector
+                                    # a
+                                    # -> vector: position
+                                        # -> identifier
+                                        # i
+                                        # <- identifier
+                                    # <- vector: position
+                                    # <- vector
+                                # <- arithmetic operator: right argument
+                                # relational operator: ==
+                                # <- Operator
+                                # -> arithmetic operator
+                                # -> arithmetic operator: left argument
+                                    # -> identifier
+                                    # k
+                                    # <- identifier
+                                # <- arithmetic operator: left argument
+                                # -> arithmetic operator: right argument
+                                    # -> identifier
+                                    # i
+                                    # <- identifier
+                                # <- arithmetic operator: right argument
+                                # relational operator: ==
+                                # <- Operator
+                        # <- if: if block
+                        # -> if: else/end block
+                        # <- if: else/end block
+                        # <- if
+                        # -> arithmetic operator
+                        # -> arithmetic operator: left argument
+                            # -> identifier
+                            # i
+                            # <- identifier
+                        # <- arithmetic operator: left argument
+                        # -> arithmetic operator: right argument
+                            # -> arithmetic operator
+                            # -> arithmetic operator: left argument
+                                # -> identifier
+                                # i
+                                # <- identifier
+                            # <- arithmetic operator: left argument
+                            # -> arithmetic operator: right argument
+                                # -> constant
+                                # 1
+                                # <- constant
+                            # <- arithmetic operator: right argument
+                            # arithmetic operator: +
+                            # <- Operator
+                        # <- arithmetic operator: right argument
+                        # relational operator: ==
+                        # <- Operator
+                # <- while: while block
+                # <- while
+                # -> return
+                # -> return: expression
+                    # -> identifier
+                    # k
+                    # <- identifier
+                # <- return: expression
+                # <- return
+        # <- function declaration
+    # <- type int
+
+    # -> type void
+        # -> function declaration
+        # sort
+                # -> type int
+                    # -> identifier
+                    # i
+                    # <- identifier
+                # <- type int
+
+                # -> type int
+                    # -> identifier
+                    # k
+                    # <- identifier
+                # <- type int
+
+                # -> arithmetic operator
+                # -> arithmetic operator: left argument
+                    # -> identifier
+                    # i
+                    # <- identifier
+                # <- arithmetic operator: left argument
+                # -> arithmetic operator: right argument
+                    # -> identifier
+                    # low
+                    # <- identifier
+                # <- arithmetic operator: right argument
+                # relational operator: ==
+                # <- Operator
+                # -> while
+                # -> while: test expression
+                    # -> arithmetic operator
+                    # -> arithmetic operator: left argument
+                        # -> identifier
+                        # i
+                        # <- identifier
+                    # <- arithmetic operator: left argument
+                    # -> arithmetic operator: right argument
+                        # -> arithmetic operator
+                        # -> arithmetic operator: left argument
+                            # -> identifier
+                            # high
+                            # <- identifier
+                        # <- arithmetic operator: left argument
+                        # -> arithmetic operator: right argument
+                            # -> constant
+                            # 1
+                            # <- constant
+                        # <- arithmetic operator: right argument
+                        # arithmetic operator: -
+                        # <- Operator
+                    # <- arithmetic operator: right argument
+                    # relational operator: <
+                    # <- Operator
+                # <- while: test expression
+                # -> while: while block
+                        # -> type int
+                            # -> identifier
+                            # t
+                            # <- identifier
+                        # <- type int
+
+                        # -> arithmetic operator
+                        # -> arithmetic operator: left argument
+                            # -> identifier
+                            # k
+                            # <- identifier
+                        # <- arithmetic operator: left argument
+                        # -> arithmetic operator: right argument
+                            # -> function call
+                            # minloc
+                            # -> function call: arguments
+                                # -> identifier
+                                # a
+                                # <- identifier
+                                # -> identifier
+                                # i
+                                # <- identifier
+                                # -> identifier
+                                # high
+                                # <- identifier
+                            # <- function call: arguments
+                            # <- function call
+                        # <- arithmetic operator: right argument
+                        # relational operator: ==
+                        # <- Operator
+                        # -> arithmetic operator
+                        # -> arithmetic operator: left argument
+                            # -> identifier
+                            # t
+                            # <- identifier
+                        # <- arithmetic operator: left argument
+                        # -> arithmetic operator: right argument
+                            # -> vector
+                            # a
+                            # -> vector: position
+                                # -> identifier
+                                # k
+                                # <- identifier
+                            # <- vector: position
+                            # <- vector
+                        # <- arithmetic operator: right argument
+                        # relational operator: ==
+                        # <- Operator
+                        # -> arithmetic operator
+                        # -> arithmetic operator: left argument
+                            # -> vector
+                            # a
+                            # -> vector: position
+                                # -> identifier
+                                # k
+                                # <- identifier
+                            # <- vector: position
+                            # <- vector
+                        # <- arithmetic operator: left argument
+                        # -> arithmetic operator: right argument
+                            # -> vector
+                            # a
+                            # -> vector: position
+                                # -> identifier
+                                # i
+                                # <- identifier
+                            # <- vector: position
+                            # <- vector
+                        # <- arithmetic operator: right argument
+                        # relational operator: ==
+                        # <- Operator
+                        # -> arithmetic operator
+                        # -> arithmetic operator: left argument
+                            # -> vector
+                            # a
+                            # -> vector: position
+                                # -> identifier
+                                # i
+                                # <- identifier
+                            # <- vector: position
+                            # <- vector
+                        # <- arithmetic operator: left argument
+                        # -> arithmetic operator: right argument
+                            # -> identifier
+                            # t
+                            # <- identifier
+                        # <- arithmetic operator: right argument
+                        # relational operator: ==
+                        # <- Operator
+                        # -> arithmetic operator
+                        # -> arithmetic operator: left argument
+                            # -> identifier
+                            # i
+                            # <- identifier
+                        # <- arithmetic operator: left argument
+                        # -> arithmetic operator: right argument
+                            # -> arithmetic operator
+                            # -> arithmetic operator: left argument
+                                # -> identifier
+                                # i
+                                # <- identifier
+                            # <- arithmetic operator: left argument
+                            # -> arithmetic operator: right argument
+                                # -> constant
+                                # 1
+                                # <- constant
+                            # <- arithmetic operator: right argument
+                            # arithmetic operator: +
+                            # <- Operator
+                        # <- arithmetic operator: right argument
+                        # relational operator: ==
+                        # <- Operator
+                # <- while: while block
+                # <- while
+        # <- function declaration
+    # <- type void
+
+    # -> type int
+        # -> function declaration
+        # gcd
+                # -> if
+                # -> if: test expression
+                    # -> assign
+                    # -> assign: right argument
+                        # -> constant
+                        # 0
+                        # <- constant
+                    # <- assign: right argument
+                    # -> assign: left argument
+                        # -> identifier
+                        # v
+                        # <- identifier
+                    # <- assign: left argument
+                    # <- assign
+                # <- if: test expression
+                # -> if: if block
+                    # -> return
+                    # -> return: expression
+                        # -> identifier
+                        # u
+                        # <- identifier
+                    # <- return: expression
+                    # <- return
+                # <- if: if block
+                # -> if: else/end block
+                    # -> return
+                    # -> return: expression
+                        # -> function call
+                        # gcd
+                        # -> function call: arguments
+                            # -> identifier
+                            # v
+                            # <- identifier
+                            # -> arithmetic operator
+                            # -> arithmetic operator: left argument
+                                # -> identifier
+                                # u
+                                # <- identifier
+                            # <- arithmetic operator: left argument
+                            # -> arithmetic operator: right argument
+                                # -> arithmetic operator
+                                # -> arithmetic operator: left argument
+                                    # -> arithmetic operator
+                                    # -> arithmetic operator: left argument
+                                        # -> identifier
+                                        # u
+                                        # <- identifier
+                                    # <- arithmetic operator: left argument
+                                    # -> arithmetic operator: right argument
+                                        # -> identifier
+                                        # v
+                                        # <- identifier
+                                    # <- arithmetic operator: right argument
+                                    # arithmetic operator: /
+                                    # <- Operator
+                                # <- arithmetic operator: left argument
+                                # -> arithmetic operator: right argument
+                                    # -> identifier
+                                    # v
+                                    # <- identifier
+                                # <- arithmetic operator: right argument
+                                # arithmetic operator: *
+                                # <- Operator
+                            # <- arithmetic operator: right argument
+                            # arithmetic operator: -
+                            # <- Operator
+                        # <- function call: arguments
+                        # <- function call
+                    # <- return: expression
+                    # <- return
+                # <- if: else/end block
+                # <- if
+        # <- function declaration
+    # <- type int
+
+    # -> type void
+        # -> function declaration
+        # main
+                # -> type int
+                    # -> identifier
+                    # type
+                    # <- identifier
+                # <- type int
+
+                # -> type int
+                    # -> identifier
+                    # i
+                    # <- identifier
+                # <- type int
+
+                # -> type int
+                    # -> identifier
+                    # x
+                    # <- identifier
+                # <- type int
+
+                # -> type int
+                    # -> identifier
+                    # y
+                    # <- identifier
+                # <- type int
+
+                # -> arithmetic operator
+                # -> arithmetic operator: left argument
+                    # -> identifier
+                    # type
+                    # <- identifier
+                # <- arithmetic operator: left argument
+                # -> arithmetic operator: right argument
+                    # -> function call
+                    # input
+                    # -> function call: arguments
+                    # <- function call: arguments
+                    # <- function call
+                # <- arithmetic operator: right argument
+                # relational operator: ==
+                # <- Operator
+                # -> while
+                # -> while: test expression
+                    # -> arithmetic operator
+                    # -> arithmetic operator: left argument
+                        # -> identifier
+                        # type
+                        # <- identifier
+                    # <- arithmetic operator: left argument
+                    # -> arithmetic operator: right argument
+                        # -> constant
+                        # 0
+                        # <- constant
+                    # <- arithmetic operator: right argument
+                    # relational operator: >
+                    # <- Operator
+                # <- while: test expression
+                # -> while: while block
+                        # -> if
+                        # -> if: test expression
+                            # -> assign
+                            # -> assign: right argument
+                                # -> constant
+                                # 1
+                                # <- constant
+                            # <- assign: right argument
+                            # -> assign: left argument
+                                # -> identifier
+                                # type
+                                # <- identifier
+                            # <- assign: left argument
+                            # <- assign
+                        # <- if: test expression
+                        # -> if: if block
+                                # -> arithmetic operator
+                                # -> arithmetic operator: left argument
+                                    # -> identifier
+                                    # i
+                                    # <- identifier
+                                # <- arithmetic operator: left argument
+                                # -> arithmetic operator: right argument
+                                    # -> constant
+                                    # 0
+                                    # <- constant
+                                # <- arithmetic operator: right argument
+                                # relational operator: ==
+                                # <- Operator
+                                # -> while
+                                # -> while: test expression
+                                    # -> arithmetic operator
+                                    # -> arithmetic operator: left argument
+                                        # -> identifier
+                                        # i
+                                        # <- identifier
+                                    # <- arithmetic operator: left argument
+                                    # -> arithmetic operator: right argument
+                                        # -> constant
+                                        # 10
+                                        # <- constant
+                                    # <- arithmetic operator: right argument
+                                    # relational operator: <
+                                    # <- Operator
+                                # <- while: test expression
+                                # -> while: while block
+                                        # -> arithmetic operator
+                                        # -> arithmetic operator: left argument
+                                            # -> vector
+                                            # vet
+                                            # -> vector: position
+                                                # -> identifier
+                                                # i
+                                                # <- identifier
+                                            # <- vector: position
+                                            # <- vector
+                                        # <- arithmetic operator: left argument
+                                        # -> arithmetic operator: right argument
+                                            # -> function call
+                                            # input
+                                            # -> function call: arguments
+                                            # <- function call: arguments
+                                            # <- function call
+                                        # <- arithmetic operator: right argument
+                                        # relational operator: ==
+                                        # <- Operator
+                                        # -> arithmetic operator
+                                        # -> arithmetic operator: left argument
+                                            # -> identifier
+                                            # i
+                                            # <- identifier
+                                        # <- arithmetic operator: left argument
+                                        # -> arithmetic operator: right argument
+                                            # -> arithmetic operator
+                                            # -> arithmetic operator: left argument
+                                                # -> identifier
+                                                # i
+                                                # <- identifier
+                                            # <- arithmetic operator: left argument
+                                            # -> arithmetic operator: right argument
+                                                # -> constant
+                                                # 1
+                                                # <- constant
+                                            # <- arithmetic operator: right argument
+                                            # arithmetic operator: +
+                                            # <- Operator
+                                        # <- arithmetic operator: right argument
+                                        # relational operator: ==
+                                        # <- Operator
+                                # <- while: while block
+                                # <- while
+                                # -> function call
+                                # sort
+                                # -> function call: arguments
+                                    # -> identifier
+                                    # vet
+                                    # <- identifier
+                                    # -> constant
+                                    # 0
+                                    # <- constant
+                                    # -> constant
+                                    # 10
+                                    # <- constant
+                                # <- function call: arguments
+                                # <- function call
+                                # -> arithmetic operator
+                                # -> arithmetic operator: left argument
+                                    # -> identifier
+                                    # i
+                                    # <- identifier
+                                # <- arithmetic operator: left argument
+                                # -> arithmetic operator: right argument
+                                    # -> constant
+                                    # 0
+                                    # <- constant
+                                # <- arithmetic operator: right argument
+                                # relational operator: ==
+                                # <- Operator
+                                # -> while
+                                # -> while: test expression
+                                    # -> arithmetic operator
+                                    # -> arithmetic operator: left argument
+                                        # -> identifier
+                                        # i
+                                        # <- identifier
+                                    # <- arithmetic operator: left argument
+                                    # -> arithmetic operator: right argument
+                                        # -> constant
+                                        # 10
+                                        # <- constant
+                                    # <- arithmetic operator: right argument
+                                    # relational operator: <
+                                    # <- Operator
+                                # <- while: test expression
+                                # -> while: while block
+                                        # -> function call
+                                        # output
+                                        # -> function call: arguments
+                                            # -> vector
+                                            # vet
+                                            # -> vector: position
+                                                # -> identifier
+                                                # i
+                                                # <- identifier
+                                            # <- vector: position
+                                            # <- vector
+                                        # <- function call: arguments
+                                        # <- function call
+                                        # -> arithmetic operator
+                                        # -> arithmetic operator: left argument
+                                            # -> identifier
+                                            # i
+                                            # <- identifier
+                                        # <- arithmetic operator: left argument
+                                        # -> arithmetic operator: right argument
+                                            # -> arithmetic operator
+                                            # -> arithmetic operator: left argument
+                                                # -> identifier
+                                                # i
+                                                # <- identifier
+                                            # <- arithmetic operator: left argument
+                                            # -> arithmetic operator: right argument
+                                                # -> constant
+                                                # 1
+                                                # <- constant
+                                            # <- arithmetic operator: right argument
+                                            # arithmetic operator: +
+                                            # <- Operator
+                                        # <- arithmetic operator: right argument
+                                        # relational operator: ==
+                                        # <- Operator
+                                # <- while: while block
+                                # <- while
+                        # <- if: if block
+                        # -> if: else/end block
+                            # -> if
+                            # -> if: test expression
+                                # -> assign
+                                # -> assign: right argument
+                                    # -> constant
+                                    # 2
+                                    # <- constant
+                                # <- assign: right argument
+                                # -> assign: left argument
+                                    # -> identifier
+                                    # type
+                                    # <- identifier
+                                # <- assign: left argument
+                                # <- assign
+                            # <- if: test expression
+                            # -> if: if block
+                                    # -> arithmetic operator
+                                    # -> arithmetic operator: left argument
+                                        # -> identifier
+                                        # x
+                                        # <- identifier
+                                    # <- arithmetic operator: left argument
+                                    # -> arithmetic operator: right argument
+                                        # -> function call
+                                        # input
+                                        # -> function call: arguments
+                                        # <- function call: arguments
+                                        # <- function call
+                                    # <- arithmetic operator: right argument
+                                    # relational operator: ==
+                                    # <- Operator
+                                    # -> arithmetic operator
+                                    # -> arithmetic operator: left argument
+                                        # -> identifier
+                                        # y
+                                        # <- identifier
+                                    # <- arithmetic operator: left argument
+                                    # -> arithmetic operator: right argument
+                                        # -> function call
+                                        # input
+                                        # -> function call: arguments
+                                        # <- function call: arguments
+                                        # <- function call
+                                    # <- arithmetic operator: right argument
+                                    # relational operator: ==
+                                    # <- Operator
+                                    # -> function call
+                                    # output
+                                    # -> function call: arguments
+                                        # -> function call
+                                        # gcd
+                                        # -> function call: arguments
+                                            # -> identifier
+                                            # x
+                                            # <- identifier
+                                            # -> identifier
+                                            # y
+                                            # <- identifier
+                                        # <- function call: arguments
+                                        # <- function call
+                                    # <- function call: arguments
+                                    # <- function call
+                            # <- if: if block
+                            # -> if: else/end block
+                            # <- if: else/end block
+                            # <- if
+                        # <- if: else/end block
+                        # <- if
+                        # -> arithmetic operator
+                        # -> arithmetic operator: left argument
+                            # -> identifier
+                            # type
+                            # <- identifier
+                        # <- arithmetic operator: left argument
+                        # -> arithmetic operator: right argument
+                            # -> function call
+                            # input
+                            # -> function call: arguments
+                            # <- function call: arguments
+                            # <- function call
+                        # <- arithmetic operator: right argument
+                        # relational operator: ==
+                        # <- Operator
+                # <- while: while block
+                # <- while
+        # <- function declaration
+    # <- type void
+
+# Fim da execução.
+
+********** Intermediate Code **********
+
+1: (function, minloc, _, _)
+2: (get_param, a, _, _)
+3: (get_param, low, _, _)
+4: (get_param, high, _, _)
+5: (equal, k, low, t2)
+6: (vector_value, a, low, t3)
+7: (equal, x, t3, t4)
+8: (addition, low, 1, t5)
+9: (equal, i, t5, t6)
+10: (label, L1, _, _)
+11: (less_than, i, high, t7)
+12: (jump_if_false, t7, L3, _)
+13: (vector_value, a, i, t8)
+14: (less_than, t8, x, t9)
+15: (jump_if_false, t9, L2, _)
+16: (vector_value, a, i, t10)
+17: (equal, x, t10, t11)
+18: (equal, k, i, t12)
+19: (label, L2, _, _)
+20: (addition, i, 1, t13)
+21: (equal, i, t13, t14)
+22: (goto, L1, _, _)
+23: (label, L3, _, _)
+24: (return, k, _, _)
+25: (function, sort, _, _)
+26: (get_param, a, _, _)
+27: (get_param, low, _, _)
+28: (get_param, high, _, _)
+29: (equal, i, low, t15)
+30: (label, L4, _, _)
+31: (subtraction, high, 1, t16)
+32: (less_than, i, t16, t17)
+33: (jump_if_false, t17, L5, _)
+34: (param_list, 3, _, _)
+35: (set_param, a, _, _)
+36: (set_param, i, _, _)
+37: (set_param, high, _, _)
+38: (call, minloc, 3, t18)
+39: (equal, k, t18, t19)
+40: (vector_value, a, k, t20)
+41: (equal, t, t20, t21)
+42: (vector_value, a, k, t22)
+43: (vector_value, a, i, t23)
+44: (equal, t22, t23, t24)
+45: (vector_value, a, i, t25)
+46: (equal, t25, t, t26)
+47: (addition, i, 1, t27)
+48: (equal, i, t27, t28)
+49: (goto, L4, _, _)
+50: (label, L5, _, _)
+51: (return, _, _, _)
+52: (function, gcd, _, _)
+53: (get_param, u, _, _)
+54: (get_param, v, _, _)
+55: (assign, v, 0, _)
+56: (jump_if_false, v, L6, _)
+57: (return, u, _, _)
+58: (goto, L7, _, _)
+59: (label, L6, _, _)
+60: (param_list, 2, _, _)
+61: (set_param, v, _, _)
+62: (division, u, v, t29)
+63: (multiplication, t29, v, t30)
+64: (subtraction, u, t30, t31)
+65: (set_param, t31, _, _)
+66: (call, gcd, 2, t32)
+67: (return, t32, _, _)
+68: (label, L7, _, _)
+69: (return, _, _, _)
+70: (function, main, _, _)
+71: (param_list, 0, _, _)
+72: (call, input, 0, t33)
+73: (equal, type, t33, t34)
+74: (label, L8, _, _)
+75: (greater_than, type, 0, t35)
+76: (jump_if_false, t35, L16, _)
+77: (assign, type, 1, _)
+78: (jump_if_false, type, L13, _)
+79: (equal, i, 0, t36)
+80: (label, L9, _, _)
+81: (less_than, i, 10, t37)
+82: (jump_if_false, t37, L10, _)
+83: (vector_value, vet, i, t38)
+84: (param_list, 0, _, _)
+85: (call, input, 0, t39)
+86: (equal, t38, t39, t40)
+87: (addition, i, 1, t41)
+88: (equal, i, t41, t42)
+89: (goto, L9, _, _)
+90: (label, L10, _, _)
+91: (param_list, 3, _, _)
+92: (set_param, vet, _, _)
+93: (set_param, 0, _, _)
+94: (set_param, 10, _, _)
+95: (call, sort, 3, t43)
+96: (equal, i, 0, t44)
+97: (label, L11, _, _)
+98: (less_than, i, 10, t45)
+99: (jump_if_false, t45, L12, _)
+100: (param_list, 1, _, _)
+101: (vector_value, vet, i, t46)
+102: (set_param, t46, _, _)
+103: (call, output, 1, t47)
+104: (addition, i, 1, t48)
+105: (equal, i, t48, t49)
+106: (goto, L11, _, _)
+107: (label, L12, _, _)
+108: (goto, L15, _, _)
+109: (label, L13, _, _)
+110: (assign, type, 2, _)
+111: (jump_if_false, type, L14, _)
+112: (param_list, 0, _, _)
+113: (call, input, 0, t50)
+114: (equal, x, t50, t51)
+115: (param_list, 0, _, _)
+116: (call, input, 0, t52)
+117: (equal, y, t52, t53)
+118: (param_list, 1, _, _)
+119: (param_list, 2, _, _)
+120: (set_param, x, _, _)
+121: (set_param, y, _, _)
+122: (call, gcd, 2, t54)
+123: (set_param, t54, _, _)
+124: (call, output, 1, t55)
+125: (label, L14, _, _)
+126: (label, L15, _, _)
+127: (param_list, 0, _, _)
+128: (call, input, 0, t56)
+129: (equal, type, t56, t57)
+130: (goto, L8, _, _)
+131: (label, L16, _, _)
+132: (halt, _, _, _)
