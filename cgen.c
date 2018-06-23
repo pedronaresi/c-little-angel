@@ -473,7 +473,7 @@ static void genExp(TreeNode * tree) {
                     case LT:
                         emitComment("relational operator: <", indent);
                         /* Atribui o tipo de instrução */
-                        instrucaoAtual = LT;
+                        instrucaoAtual = LTHAN;
                         break;
                     case LTEQ:
                         emitComment("relational operator: <=", indent);
@@ -483,7 +483,7 @@ static void genExp(TreeNode * tree) {
                     case GT:
                         emitComment("relational operator: >", indent);
                         /* Atribui o tipo de instrução */
-                        instrucaoAtual = GT;
+                        instrucaoAtual = GTHAN;
                         break;
                     case GTEQ:
                         emitComment("relational operator: >=", indent);
@@ -493,7 +493,7 @@ static void genExp(TreeNode * tree) {
                     case EQ:
                         emitComment("relational operator: ==", indent);
                         /* Atribui o tipo de instrução */
-                        instrucaoAtual = EQ;
+                        instrucaoAtual = EQUAL;
                         break;
                     case NEQ:
                         emitComment("relational operator: !=", indent);
