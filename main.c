@@ -10,16 +10,22 @@
 //  Copyright © 2018 Pedro Manhez Naresi. All rights reserved.
 
 #include "globals.h"
-
-/* set NO_PARSE to TRUE to get a scanner-only compiler */
+// Set NO_PARSE to TRUE to get a scanner-only compiler.
 #define NO_PARSE FALSE
-/* set NO_ANALYZE to TRUE to get a parser-only compiler */
+
+// Set NO_ANALYZE to TRUE to get a parser-only compiler.
 #define NO_ANALYZE FALSE
 
-/* set NO_CODE to TRUE to get a compiler that does not
- * generate code
- */
+// Set NO_CODE to TRUE to get a compiler that does not generate code.
 #define NO_CODE TRUE
+
+// Set NO_TARGET_CODE to TRUE to get a compiler that does not generate
+// object code.
+#define NO_TARGET_CODE TRUE
+
+// Set NO_BINARY_CODE to TRUE to get a compiler that does not generate binary
+// code.
+#define NO_BINARY_CODE TRUE
 
 #include "util.h"
 #if NO_PARSE
@@ -34,26 +40,32 @@
 #endif
 #endif
 
-/* allocate global variables */
+// Allocate global variables
 int lineno = 0;
 FILE * source;
 FILE * listing;
 FILE * code;
 
-/* allocate and set tracing flags */
+// Allocate and set tracing flags
 int EchoSource = FALSE;
 int TraceScan = FALSE;
 int TraceParse = TRUE;
 int TraceAnalyze = TRUE;
 int TraceCode = FALSE;
+int TraceTarget = TRUE;
+int TraceBinary = TRUE;
 
+//Error flags
 int Error = FALSE;
+
+// Control flags for Synthesis
 int intermediateCodeGenerated = FALSE;
 int objectCodeGenerated = FALSE;
+int binaryCodeGenerated = FALSE;
 
 int main(int argc, char * argv[]) {
   TreeNode * syntaxTree;
-  char pgm[120]; /* source code file name */
+  char pgm[120]; /* Source code file name */
   if (argc != 2) {
     fprintf(stderr,"usage: %s <filename>\n",argv[0]);
     exit(1);
@@ -66,7 +78,7 @@ int main(int argc, char * argv[]) {
     fprintf(stderr,"File %s not found\n",pgm);
     exit(1);
   }
-  listing = stdout; /* send listing to screen */
+  listing = stdout; /* Send listing to screen */
   fprintf(listing,"\nC- COMPILATION: %s\n",pgm);
 #if NO_PARSE
   while (getToken()!=ENDFILE);
