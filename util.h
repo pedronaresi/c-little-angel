@@ -1,4 +1,3 @@
-
 //  C Little Angel (cla)®
 //
 //  util.h

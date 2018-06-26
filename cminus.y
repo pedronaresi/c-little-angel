@@ -35,6 +35,8 @@ static TreeNode * insertIOFunctions();
 %token PLUS MINUS TIMES OVER LT LTEQ GT GTEQ ASSIGN NEQ EQ SEMI COMMA LPAREN
 RPAREN LBRACK RBRACK LBRACE RBRACE
 %token ERROR
+%nonassoc RPAREN
+%nonassoc ELSE
 
 %% /* Grammar for C- */
 

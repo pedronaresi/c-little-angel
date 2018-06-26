@@ -21,11 +21,11 @@
 
 // Set NO_TARGET_CODE to TRUE to get a compiler that does not generate
 // object code.
-#define NO_TARGET_CODE TRUE
+#define NO_TARGET_CODE FALSE
 
 // Set NO_BINARY_CODE to TRUE to get a compiler that does not generate binary
 // code.
-#define NO_BINARY_CODE TRUE
+#define NO_BINARY_CODE FALSE
 
 #include "util.h"
 #if NO_PARSE
@@ -36,6 +36,12 @@
 #include "analyze.h"
 #if !NO_CODE
 #include "cgen.h"
+#if !NO_ASSEMBLY_CODE
+#include "assembly.h"
+#if !NO_BINARY_CODE
+#include "binary.h"
+#endif
+#endif
 #endif
 #endif
 #endif
@@ -80,48 +86,84 @@ int main(int argc, char * argv[]) {
   }
   listing = stdout; /* Send listing to screen */
   fprintf(listing,"\nC- COMPILATION: %s\n",pgm);
-#if NO_PARSE
-  while (getToken()!=ENDFILE);
-#else
-  syntaxTree = parse();
-  if (TraceParse) {
-    fprintf(listing,"\nSyntax tree:\n");
-    printTree(syntaxTree);
-  }
-#if !NO_ANALYZE
-  if (!Error) {
-    if (TraceAnalyze)
-      fprintf(listing,"\nBuilding Symbol Table...\n");
-    buildSymtab(syntaxTree);
-    if (TraceAnalyze)
-      fprintf(listing,"\nChecking Types...\n");
-    typeCheck(syntaxTree);
-    if (TraceAnalyze)
-      fprintf(listing,"\nType Checking Finished\n");
-  }
-#if !NO_CODE
-  if (!Error) {
-    char * codefile;
-    int fnlen = strcspn(pgm,".");
-    codefile = (char *) calloc(fnlen+4, sizeof(char));
-    strncpy(codefile, pgm, fnlen);
-    strcat(codefile,".txt");
-    code = fopen(codefile,"w");
-    if (code == NULL) {
-      printf("Unable to open %s\n",codefile);
-      exit(1);
+  #if NO_PARSE
+    while (getToken()!=ENDFILE);
+  #else
+    syntaxTree = parse();
+    if (TraceParse) {
+      fprintf(listing,"\nSyntax tree:\n");
+      printTree(syntaxTree);
     }
-    if (TraceCode)
-      fprintf(listing, "\nGenerating Intermediate Code...\n");
-    codeGen(syntaxTree, codefile);
+  #if !NO_ANALYZE
+    if (!Error) {
+      if (TraceAnalyze)
+        fprintf(listing,"\nBuilding Symbol Table...\n");
+      buildSymtab(syntaxTree);
+      if (TraceAnalyze)
+        fprintf(listing,"\nChecking Types...\n");
+      typeCheck(syntaxTree);
+      if (TraceAnalyze)
+        fprintf(listing,"\nType Checking Finished\n");
+    }
+  #if !NO_CODE
+    if (!Error) {
+      char * codefile;
+      int fnlen = strcspn(pgm,".");
+      codefile = (char *) calloc(fnlen+4, sizeof(char));
+      strncpy(codefile, pgm, fnlen);
+      strcat(codefile,".txt");
+      code = fopen(codefile,"w");
+      if (code == NULL) {
+        printf("Unable to open %s\n",codefile);
+        exit(1);
+      }
+      if (TraceCode)
+        fprintf(listing, "\nGenerating Intermediate Code...\n");
+      codeGen(syntaxTree, codefile);
+      fclose(code);
+      if (TraceCode)
+        fprintf(listing, "\nIntermediate Code generation finished!\n");
+      intermediateCodeGenerated = TRUE;
+    }
+  #if !NO_ASSEMBLY_CODE
+  if(intermediateCodeGenerated) {
+    char * codefile;
+    int fnlen = strcspn(pgm, ".");
+    codefile = (char *) calloc(fnlen + 4, sizeof(char));
+    strncpy(codefile, pgm, fnlen);
+    strcat(codefile, ".txt");
+    code = fopen(codefile, "a+");
+    Quadruple codigoIntermediario = getCodigoIntermediario();
+    if (TraceTarget)
+      fprintf(listing, "\nGenerating Object Code...\n");
+    geraCodigoObjeto(codigoIntermediario);
     fclose(code);
-    if (TraceCode)
-      fprintf(listing, "\nIntermediate Code generation finished!\n");
-    intermediateCodeGenerated = TRUE;
+    if (TraceTarget)
+      fprintf(listing, "\nObject Code generation finished!\n");
+    // Código objeto gerado com sucesso
+    objectCodeGenerated = TRUE;
   }
-#endif
-#endif
-#endif
+  #if !NO_BINARY_CODE
+  if(objectCodeGenerated) {
+    char * codefile;
+    int fnlen = strcspn(pgm, ".");
+    codefile = (char *) calloc(fnlen + 4, sizeof(char));
+    strncpy(codefile, pgm, fnlen);
+    strcat(codefile, ".txt");
+    code = fopen(codefile, "a+");
+    Objeto codigoObjeto = getCodigoObjeto();
+    if (TraceBinary)
+      fprintf(listing, "\nGenerating Binary Code...\n");
+    geraCodigoBinario(codigoObjeto);
+    fclose(code);
+    if (TraceBinary)
+      fprintf(listing, "\nBinary Code generation finished!\n\n");
+  }
+  #endif
+  #endif
+  #endif
+  #endif
+  #endif
   fclose(source);
   return 0;
 }

@@ -489,13 +489,13 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,    41,    41,    45,    58,    60,    61,    63,    70,    81,
-      87,    94,   105,   106,   108,   121,   123,   130,   139,   146,
-     159,   161,   174,   176,   177,   178,   179,   180,   182,   183,
-     185,   191,   199,   206,   210,   216,   223,   225,   231,   240,
-     246,   251,   256,   261,   266,   271,   276,   282,   288,   290,
-     295,   301,   307,   309,   314,   320,   321,   322,   323,   325,
-     332,   333,   335,   348,   350,   357,   363
+       0,    43,    43,    47,    60,    62,    63,    65,    72,    83,
+      89,    96,   107,   108,   110,   123,   125,   132,   141,   148,
+     161,   163,   176,   178,   179,   180,   181,   182,   184,   185,
+     187,   193,   201,   208,   212,   218,   225,   227,   233,   242,
+     248,   253,   258,   263,   268,   273,   278,   284,   290,   292,
+     297,   303,   309,   311,   316,   322,   323,   324,   325,   327,
+     334,   335,   337,   350,   352,   359,   365
 };
 #endif
 
@@ -1472,14 +1472,14 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 41 "cminus.y"
+#line 43 "cminus.y"
     { savedTree = insertIOFunctions();
                                          savedTree->sibling->sibling = (yyvsp[(1) - (1)]);
                                        ;}
     break;
 
   case 3:
-#line 46 "cminus.y"
+#line 48 "cminus.y"
     {
 				YYSTYPE t = (yyvsp[(1) - (2)]);
                    		if (t != NULL) {
@@ -1495,22 +1495,22 @@ yyreduce:
     break;
 
   case 4:
-#line 58 "cminus.y"
-    { (yyval) = (yyvsp[(1) - (1)]); ;}
-    break;
-
-  case 5:
 #line 60 "cminus.y"
     { (yyval) = (yyvsp[(1) - (1)]); ;}
     break;
 
+  case 5:
+#line 62 "cminus.y"
+    { (yyval) = (yyvsp[(1) - (1)]); ;}
+    break;
+
   case 6:
-#line 61 "cminus.y"
+#line 63 "cminus.y"
     { (yyval) = (yyvsp[(1) - (1)]); ;}
     break;
 
   case 7:
-#line 64 "cminus.y"
+#line 66 "cminus.y"
     {
 				(yyval) = (yyvsp[(1) - (3)]);
 				(yyval)->child[0] = (yyvsp[(2) - (3)]);
@@ -1520,7 +1520,7 @@ yyreduce:
     break;
 
   case 8:
-#line 71 "cminus.y"
+#line 73 "cminus.y"
     {
 				(yyval) = (yyvsp[(1) - (6)]);
 				(yyval)->child[0] = (yyvsp[(2) - (6)]);
@@ -1533,7 +1533,7 @@ yyreduce:
     break;
 
   case 9:
-#line 82 "cminus.y"
+#line 84 "cminus.y"
     {
 				(yyval) = newStmtNode(IntegerK);
 				(yyval)->attr.name = "int";
@@ -1542,7 +1542,7 @@ yyreduce:
     break;
 
   case 10:
-#line 88 "cminus.y"
+#line 90 "cminus.y"
     {
 				(yyval) = newStmtNode(VoidK);
 				(yyval)->attr.name = "void";
@@ -1551,7 +1551,7 @@ yyreduce:
     break;
 
   case 11:
-#line 95 "cminus.y"
+#line 97 "cminus.y"
     {
 				(yyval) = (yyvsp[(1) - (6)]);
 				(yyval)->child[0] = (yyvsp[(2) - (6)]);
@@ -1564,17 +1564,17 @@ yyreduce:
     break;
 
   case 12:
-#line 105 "cminus.y"
+#line 107 "cminus.y"
     { (yyval) = (yyvsp[(1) - (1)]); ;}
     break;
 
   case 13:
-#line 106 "cminus.y"
+#line 108 "cminus.y"
     { (yyval) = NULL; ;}
     break;
 
   case 14:
-#line 109 "cminus.y"
+#line 111 "cminus.y"
     {
 				YYSTYPE t = (yyvsp[(1) - (3)]);
 				if (t != NULL) {
@@ -1590,12 +1590,12 @@ yyreduce:
     break;
 
   case 15:
-#line 121 "cminus.y"
+#line 123 "cminus.y"
     { (yyval) = (yyvsp[(1) - (1)]); ;}
     break;
 
   case 16:
-#line 124 "cminus.y"
+#line 126 "cminus.y"
     {
 				(yyval) = (yyvsp[(1) - (2)]);
 				(yyval)->child[0] = (yyvsp[(2) - (2)]);
@@ -1605,7 +1605,7 @@ yyreduce:
     break;
 
   case 17:
-#line 131 "cminus.y"
+#line 133 "cminus.y"
     {
 				(yyval) = (yyvsp[(1) - (4)]);
 				(yyval)->child[0] = (yyvsp[(2) - (4)]);
@@ -1616,7 +1616,7 @@ yyreduce:
     break;
 
   case 18:
-#line 140 "cminus.y"
+#line 142 "cminus.y"
     {
 				(yyval) = newStmtNode(CompK);
 				(yyval)->child[0] = (yyvsp[(2) - (4)]);
@@ -1625,7 +1625,7 @@ yyreduce:
     break;
 
   case 19:
-#line 147 "cminus.y"
+#line 149 "cminus.y"
     {
 				YYSTYPE t = (yyvsp[(1) - (2)]);
 				if (t != NULL) {
@@ -1641,12 +1641,12 @@ yyreduce:
     break;
 
   case 20:
-#line 159 "cminus.y"
+#line 161 "cminus.y"
     { (yyval) = (yyvsp[(1) - (1)]); ;}
     break;
 
   case 21:
-#line 162 "cminus.y"
+#line 164 "cminus.y"
     {
 				YYSTYPE t = (yyvsp[(1) - (2)]);
 				if (t != NULL) {
@@ -1662,47 +1662,47 @@ yyreduce:
     break;
 
   case 22:
-#line 174 "cminus.y"
-    { (yyval) = (yyvsp[(1) - (1)]); ;}
-    break;
-
-  case 23:
 #line 176 "cminus.y"
     { (yyval) = (yyvsp[(1) - (1)]); ;}
     break;
 
-  case 24:
-#line 177 "cminus.y"
-    { (yyval) = (yyvsp[(1) - (1)]); ;}
-    break;
-
-  case 25:
+  case 23:
 #line 178 "cminus.y"
     { (yyval) = (yyvsp[(1) - (1)]); ;}
     break;
 
-  case 26:
+  case 24:
 #line 179 "cminus.y"
     { (yyval) = (yyvsp[(1) - (1)]); ;}
     break;
 
-  case 27:
+  case 25:
 #line 180 "cminus.y"
     { (yyval) = (yyvsp[(1) - (1)]); ;}
     break;
 
-  case 28:
+  case 26:
+#line 181 "cminus.y"
+    { (yyval) = (yyvsp[(1) - (1)]); ;}
+    break;
+
+  case 27:
 #line 182 "cminus.y"
+    { (yyval) = (yyvsp[(1) - (1)]); ;}
+    break;
+
+  case 28:
+#line 184 "cminus.y"
     { (yyval) = (yyvsp[(1) - (2)]); ;}
     break;
 
   case 29:
-#line 183 "cminus.y"
+#line 185 "cminus.y"
     { (yyval) = NULL; ;}
     break;
 
   case 30:
-#line 186 "cminus.y"
+#line 188 "cminus.y"
     {
 				(yyval) = newStmtNode(IfK);
 				(yyval)->child[0] = (yyvsp[(3) - (5)]);
@@ -1711,7 +1711,7 @@ yyreduce:
     break;
 
   case 31:
-#line 192 "cminus.y"
+#line 194 "cminus.y"
     {
 				(yyval) = newStmtNode(IfK);
 				(yyval)->child[0] = (yyvsp[(3) - (7)]);
@@ -1721,7 +1721,7 @@ yyreduce:
     break;
 
   case 32:
-#line 200 "cminus.y"
+#line 202 "cminus.y"
     {
 				(yyval) = newStmtNode(WhileK);
 				(yyval)->child[0] = (yyvsp[(3) - (5)]);
@@ -1730,14 +1730,14 @@ yyreduce:
     break;
 
   case 33:
-#line 207 "cminus.y"
+#line 209 "cminus.y"
     {
 				(yyval) = newStmtNode(ReturnK);
 			;}
     break;
 
   case 34:
-#line 211 "cminus.y"
+#line 213 "cminus.y"
     {
 				(yyval) = newStmtNode(ReturnK);
 				(yyval)->child[0] = (yyvsp[(2) - (3)]);
@@ -1745,7 +1745,7 @@ yyreduce:
     break;
 
   case 35:
-#line 217 "cminus.y"
+#line 219 "cminus.y"
     {
 				(yyval) = newExpNode(OpK);
 				(yyval)->attr.op = ASSIGN;
@@ -1755,12 +1755,12 @@ yyreduce:
     break;
 
   case 36:
-#line 223 "cminus.y"
+#line 225 "cminus.y"
     { (yyval) = (yyvsp[(1) - (1)]); ;}
     break;
 
   case 37:
-#line 226 "cminus.y"
+#line 228 "cminus.y"
     {
 				(yyval) = (yyvsp[(1) - (1)]);
                 (yyval)->type = Integer;
@@ -1769,7 +1769,7 @@ yyreduce:
     break;
 
   case 38:
-#line 232 "cminus.y"
+#line 234 "cminus.y"
     {
 				(yyval) = (yyvsp[(1) - (4)]);
 				(yyval)->kind.exp = VectorK;
@@ -1780,7 +1780,7 @@ yyreduce:
     break;
 
   case 39:
-#line 241 "cminus.y"
+#line 243 "cminus.y"
     {
 				(yyval) = (yyvsp[(2) - (3)]);
 				(yyval)->child[0] = (yyvsp[(1) - (3)]);
@@ -1789,14 +1789,14 @@ yyreduce:
     break;
 
   case 40:
-#line 247 "cminus.y"
+#line 249 "cminus.y"
     {
 				(yyval) = (yyvsp[(1) - (1)]);
 			;}
     break;
 
   case 41:
-#line 252 "cminus.y"
+#line 254 "cminus.y"
     {
 				(yyval) = newExpNode(OpK);
 				(yyval)->attr.op = LTEQ;
@@ -1804,7 +1804,7 @@ yyreduce:
     break;
 
   case 42:
-#line 257 "cminus.y"
+#line 259 "cminus.y"
     {
 				(yyval) = newExpNode(OpK);
 				(yyval)->attr.op = LT;
@@ -1812,7 +1812,7 @@ yyreduce:
     break;
 
   case 43:
-#line 262 "cminus.y"
+#line 264 "cminus.y"
     {
 				(yyval) = newExpNode(OpK);
 				(yyval)->attr.op = GT;
@@ -1820,7 +1820,7 @@ yyreduce:
     break;
 
   case 44:
-#line 267 "cminus.y"
+#line 269 "cminus.y"
     {
 				(yyval) = newExpNode(OpK);
 				(yyval)->attr.op = GTEQ;
@@ -1828,7 +1828,7 @@ yyreduce:
     break;
 
   case 45:
-#line 272 "cminus.y"
+#line 274 "cminus.y"
     {
 				(yyval) = newExpNode(OpK);
 				(yyval)->attr.op = EQ;
@@ -1836,7 +1836,7 @@ yyreduce:
     break;
 
   case 46:
-#line 277 "cminus.y"
+#line 279 "cminus.y"
     {
 				(yyval) = newExpNode(OpK);
 				(yyval)->attr.op = NEQ;
@@ -1844,7 +1844,7 @@ yyreduce:
     break;
 
   case 47:
-#line 283 "cminus.y"
+#line 285 "cminus.y"
     {
 				(yyval) = (yyvsp[(2) - (3)]);
 				(yyval)->child[0] = (yyvsp[(1) - (3)]);
@@ -1853,12 +1853,12 @@ yyreduce:
     break;
 
   case 48:
-#line 288 "cminus.y"
+#line 290 "cminus.y"
     { (yyval) = (yyvsp[(1) - (1)]); ;}
     break;
 
   case 49:
-#line 291 "cminus.y"
+#line 293 "cminus.y"
     {
 				(yyval) = newExpNode(OpK);
 				(yyval)->attr.op = PLUS;
@@ -1866,7 +1866,7 @@ yyreduce:
     break;
 
   case 50:
-#line 296 "cminus.y"
+#line 298 "cminus.y"
     {
 				(yyval) = newExpNode(OpK);
 				(yyval)->attr.op = MINUS;
@@ -1874,7 +1874,7 @@ yyreduce:
     break;
 
   case 51:
-#line 302 "cminus.y"
+#line 304 "cminus.y"
     {
 				(yyval) = (yyvsp[(2) - (3)]);
 				(yyval)->child[0] = (yyvsp[(1) - (3)]);
@@ -1883,12 +1883,12 @@ yyreduce:
     break;
 
   case 52:
-#line 307 "cminus.y"
+#line 309 "cminus.y"
     { (yyval) = (yyvsp[(1) - (1)]); ;}
     break;
 
   case 53:
-#line 310 "cminus.y"
+#line 312 "cminus.y"
     {
 				(yyval) = newExpNode(OpK);
 				(yyval)->attr.op = TIMES;
@@ -1896,7 +1896,7 @@ yyreduce:
     break;
 
   case 54:
-#line 315 "cminus.y"
+#line 317 "cminus.y"
     {
 				(yyval) = newExpNode(OpK);
 				(yyval)->attr.op = OVER;
@@ -1904,27 +1904,27 @@ yyreduce:
     break;
 
   case 55:
-#line 320 "cminus.y"
+#line 322 "cminus.y"
     { (yyval) = (yyvsp[(2) - (3)]); ;}
     break;
 
   case 56:
-#line 321 "cminus.y"
-    { (yyval) = (yyvsp[(1) - (1)]); ;}
-    break;
-
-  case 57:
-#line 322 "cminus.y"
-    { (yyval) = (yyvsp[(1) - (1)]); ;}
-    break;
-
-  case 58:
 #line 323 "cminus.y"
     { (yyval) = (yyvsp[(1) - (1)]); ;}
     break;
 
+  case 57:
+#line 324 "cminus.y"
+    { (yyval) = (yyvsp[(1) - (1)]); ;}
+    break;
+
+  case 58:
+#line 325 "cminus.y"
+    { (yyval) = (yyvsp[(1) - (1)]); ;}
+    break;
+
   case 59:
-#line 326 "cminus.y"
+#line 328 "cminus.y"
     {
 				(yyval) = (yyvsp[(1) - (4)]);
 				(yyval)->kind.exp = CallK;
@@ -1933,17 +1933,17 @@ yyreduce:
     break;
 
   case 60:
-#line 332 "cminus.y"
+#line 334 "cminus.y"
     { (yyval) = (yyvsp[(1) - (1)]); ;}
     break;
 
   case 61:
-#line 333 "cminus.y"
+#line 335 "cminus.y"
     { (yyval) = (yyvsp[(1) - (1)]); ;}
     break;
 
   case 62:
-#line 336 "cminus.y"
+#line 338 "cminus.y"
     {
 				YYSTYPE t = (yyvsp[(1) - (3)]);
 				if (t != NULL) {
@@ -1959,12 +1959,12 @@ yyreduce:
     break;
 
   case 63:
-#line 348 "cminus.y"
+#line 350 "cminus.y"
     { (yyval) = (yyvsp[(1) - (1)]); ;}
     break;
 
   case 64:
-#line 351 "cminus.y"
+#line 353 "cminus.y"
     {
 				(yyval) = newExpNode(IdK);
 				(yyval)->attr.name = copyString(tokenString);
@@ -1973,7 +1973,7 @@ yyreduce:
     break;
 
   case 65:
-#line 358 "cminus.y"
+#line 360 "cminus.y"
     {
 				(yyval) = newExpNode(ConstK);
 				(yyval)->attr.val = atoi(tokenString);
@@ -1981,7 +1981,7 @@ yyreduce:
     break;
 
   case 66:
-#line 363 "cminus.y"
+#line 365 "cminus.y"
     { (yyval) = NULL; ;}
     break;
 
@@ -2201,7 +2201,7 @@ yyreturn:
 }
 
 
-#line 365 "cminus.y"
+#line 367 "cminus.y"
 
 
 int yyerror(char * message)

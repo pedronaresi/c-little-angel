@@ -44,9 +44,9 @@ whitespace  [ \t]+
 "<="            {return LTEQ;}
 ">"             {return GT;}
 ">="            {return GTEQ;}
-"=="            {return ASSIGN;}
+"="             {return ASSIGN;}
 "!="            {return NEQ;}
-"="             {return EQ;}
+"=="            {return EQ;}
 ";"             {return SEMI;}
 ","             {return COMMA;}
 "("             {return LPAREN;}
