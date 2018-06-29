@@ -331,7 +331,7 @@ void geraCodigoChamadaFuncao(Quadruple q) {
         printCode(insertObjInst(createObjInst(_HALT, TYPE_J, NULL, NULL, NULL)));
         printCode(insertObjInst(createObjInst(_IN, TYPE_I, getTempRegName(q->op3), NULL, NULL)));
     } else if(!strcmp(q->op1.contents.variable.name, "output")) {
-        printCode(insertObjInst(createObjInst(_OUT, TYPE_I, getArgReg(0), NULL, getImediato(q->display))));
+        printCode(insertObjInst(createObjInst(_OUT, TYPE_K, getArgReg(0), NULL, getImediato(q->display))));
     } else if(!strcmp(escopoHead->nome, "main")) {
         tamanhoBlocoMemoria = getTamanhoBlocoMemoriaEscopo(q->op1.contents.variable.name);
         printCode(insertObjInst(createObjInst(_JUMPAL, TYPE_J, getOperandLabel(q->op1.contents.variable.name), NULL, NULL)));

@@ -35,7 +35,7 @@ static const enum opcode opcode_map[] = {_ADD, _ADDI, _SUB, _SUBI, _MULT, _DIV,
       _IN, _OUT};
 
 typedef enum type {
-    TYPE_R, TYPE_I, TYPE_J
+    TYPE_R, TYPE_I, TYPE_J, TYPE_K
 } Type;
 
 typedef enum registerName {

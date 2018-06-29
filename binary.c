@@ -24,9 +24,9 @@ const char * toBinaryOpcode(Opcode op) {
         // "li", "la", "sw", "beq", "bne", "blt", "blet",
         "100001", "010001", "010000", "001001", "001010", "011100", "011101",
         // "bgt", "bge", "j", "jal", "jr", "nop", "hlt",
-        "011110", "011111", "010111", "011010", "011011", "011100", "011101",
-        //  "reset", "jr", "nop", "halt", "reset", "in", "out"
-        "011001", "111111", "111110", "011000", "010101", "010101", "010110"
+        "011110", "011111", "010111", "011010", "011011", "011100", "011000",
+        //  "reset", "in", "out"
+        "011001", "010101", "010110"
     };
     return strings[op];
 }
@@ -111,6 +111,11 @@ void geraCodigoBinario(Objeto codigoObjeto) {
                 strcat(temp, toBinaryRegister(obj->op1->enderecamento.registrador));
                 strcat(temp, "_");
                 strcat(temp, getZeros(11));
+                break;
+            case TYPE_K:
+                strcat(temp, toBinaryRegister(obj->op1->enderecamento.registrador));
+                strcat(temp, "_");
+                strcat(temp, getZeros(21));
                 break;
             case TYPE_I:
                 if(obj->opcode == _LOADI) {
