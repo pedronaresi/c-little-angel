@@ -1,0 +1,252 @@
+# C- compilation for the intermediate code
+# File: tests/fatorial.txt
+    # -> type int
+        # -> function declaration
+        # input
+        # <- function declaration
+    # <- type int
+
+    # -> type void
+        # -> function declaration
+        # output
+        # <- function declaration
+    # <- type void
+
+    # -> type int
+        # -> function declaration
+        # fatorial
+                # -> if
+                # -> if: test expression
+                    # -> arithmetic operator
+                    # -> arithmetic operator: left argument
+                        # -> identifier
+                        # x
+                        # <- identifier
+                    # <- arithmetic operator: left argument
+                    # -> arithmetic operator: right argument
+                        # -> constant
+                        # 1
+                        # <- constant
+                    # <- arithmetic operator: right argument
+                    # relational operator: ==
+                    # <- Operator
+                # <- if: test expression
+                # -> if: if block
+                        # -> return
+                        # -> return: expression
+                            # -> constant
+                            # 1
+                            # <- constant
+                        # <- return: expression
+                        # <- return
+                # <- if: if block
+                # -> if: else/end block
+                        # -> return
+                        # -> return: expression
+                            # -> arithmetic operator
+                            # -> arithmetic operator: left argument
+                                # -> function call
+                                # fatorial
+                                # -> function call: arguments
+                                    # -> arithmetic operator
+                                    # -> arithmetic operator: left argument
+                                        # -> identifier
+                                        # x
+                                        # <- identifier
+                                    # <- arithmetic operator: left argument
+                                    # -> arithmetic operator: right argument
+                                        # -> constant
+                                        # 1
+                                        # <- constant
+                                    # <- arithmetic operator: right argument
+                                    # arithmetic operator: -
+                                    # <- Operator
+                                # <- function call: arguments
+                                # <- function call
+                            # <- arithmetic operator: left argument
+                            # -> arithmetic operator: right argument
+                                # -> identifier
+                                # x
+                                # <- identifier
+                            # <- arithmetic operator: right argument
+                            # arithmetic operator: *
+                            # <- Operator
+                        # <- return: expression
+                        # <- return
+                # <- if: else/end block
+                # <- if
+        # <- function declaration
+    # <- type int
+
+    # -> type int
+        # -> function declaration
+        # main
+                # -> type int
+                    # -> identifier
+                    # x
+                    # <- identifier
+                # <- type int
+
+                # -> type int
+                    # -> identifier
+                    # z
+                    # <- identifier
+                # <- type int
+
+                # -> assign
+                # -> assign: right argument
+                    # -> function call
+                    # input
+                    # -> function call: arguments
+                    # <- function call: arguments
+                    # <- function call
+                # <- assign: right argument
+                # -> assign: left argument
+                    # -> identifier
+                    # x
+                    # <- identifier
+                # <- assign: left argument
+                # <- assign
+                # -> assign
+                # -> assign: right argument
+                    # -> function call
+                    # fatorial
+                    # -> function call: arguments
+                        # -> identifier
+                        # x
+                        # <- identifier
+                    # <- function call: arguments
+                    # <- function call
+                # <- assign: right argument
+                # -> assign: left argument
+                    # -> identifier
+                    # z
+                    # <- identifier
+                # <- assign: left argument
+                # <- assign
+                # -> function call
+                # output
+                # -> function call: arguments
+                    # -> identifier
+                    # z
+                    # <- identifier
+                # <- function call: arguments
+                # <- function call
+        # <- function declaration
+    # <- type int
+
+# Fim da execução.
+
+********** Intermediate Code **********
+
+1: (function, fatorial, _, _)
+2: (get_param, x, _, _)
+3: (equal, x, 1, t1)
+4: (jump_if_false, t1, L1, _)
+5: (return, 1, _, _)
+6: (goto, L2, _, _)
+7: (label, L1, _, _)
+8: (param_list, 1, _, _)
+9: (subtraction, x, 1, t2)
+10: (set_param, t2, _, _)
+11: (call, fatorial, 1, t3)
+12: (multiplication, t3, x, t4)
+13: (return, t4, _, _)
+14: (label, L2, _, _)
+15: (return, _, _, _)
+16: (function, main, _, _)
+17: (param_list, 0, _, _)
+18: (call, input, 0, t5)
+19: (assign, x, t5, _)
+20: (param_list, 1, _, _)
+21: (set_param, x, _, _)
+22: (call, fatorial, 1, t6)
+23: (assign, z, t6, _)
+24: (param_list, 1, _, _)
+25: (set_param, z, _, _)
+26: (call, output, 1, t7)
+27: (halt, _, _, _)
+
+********** Código objeto **********
+
+fatorial:
+    0:	addi	$sp, $sp, 2
+    1:	mov	$s0, $a0
+    2:	li	$t0, 1
+    3:	beq	$s0, $t0, L1
+    4:	li	$t1, 1
+    5:	mov	$v0, $t1
+    6:	jr	$ra
+    7:	j	L2
+.L1	
+    8:	subi	$t2, $s0, 1
+    9:	mov	$a0, $t2
+    10:	sw	$ra, 1($sp)
+    11:	nop	
+    12:	jal	fatorial
+    13:	subi	$sp, $sp, 2
+    14:	lw	$ra, 1($sp)
+    15:	mov	$t3, $v0
+    16:	mul	$t4, $t3, $s0
+    17:	mov	$v0, $t4
+    18:	jr	$ra
+.L2	
+    19:	jr	$ra
+
+main:
+    20:	addi	$sp, $sp, 1
+    21:	in	$t0
+    22:	sw	$t0, -1($sp)
+    23:	nop	
+    24:	lw	$s0, -1($sp)
+    25:	mov	$a0, $s0
+    26:	jal	fatorial
+    27:	mov	$t1, $v0
+    28:	subi	$sp, $sp, 2
+    29:	sw	$t1, 0($sp)
+    30:	nop	
+    31:	lw	$s1, 0($sp)
+    32:	mov	$a0, $s1
+    33:	out	$a0, 0
+    34:	reset	
+    35:	halt	
+
+********** Código binário **********
+
+instructionRAM[0] = 32'b010111_00000000000000000000010101; 	// Jump to Main
+instructionRAM[1] = 32'b001011_00011_00011_0000000000000010; 	// addi
+instructionRAM[2] = 32'b100000_00111_01011_0000000000000000; 	// mov
+instructionRAM[3] = 32'b010100_00000_10101_0000000000000001; 	// li
+instructionRAM[4] = 32'b001001_01011_10101_0000000000001001; 	// beq
+instructionRAM[5] = 32'b010100_00000_10110_0000000000000001; 	// li
+instructionRAM[6] = 32'b100000_10110_00001_0000000000000000; 	// mov
+instructionRAM[7] = 32'b011011_00000_11111_0000000000000000; 	// jr
+instructionRAM[8] = 32'b010111_00000000000000000000010100; 	// j
+instructionRAM[9] = 32'b001100_01011_10111_0000000000000001; 	// subi
+instructionRAM[10] = 32'b100000_10111_00111_0000000000000000; 	// mov
+instructionRAM[11] = 32'b010000_00011_11111_0000000000000001; 	// sw
+instructionRAM[12] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[13] = 32'b011010_00000000000000000000000001; 	// jal
+instructionRAM[14] = 32'b001100_00011_00011_0000000000000010; 	// subi
+instructionRAM[15] = 32'b001111_00011_11111_0000000000000001; 	// lw
+instructionRAM[16] = 32'b100000_00001_11000_0000000000000000; 	// mov
+instructionRAM[17] = 32'b000110_11000_01011_11001_00000000000; 	// mul
+instructionRAM[18] = 32'b100000_11001_00001_0000000000000000; 	// mov
+instructionRAM[19] = 32'b011011_00000_11111_0000000000000000; 	// jr
+instructionRAM[20] = 32'b011011_00000_11111_0000000000000000; 	// jr
+instructionRAM[21] = 32'b001011_00011_00011_0000000000000001; 	// addi
+instructionRAM[22] = 32'b010101_00000_10101_0000000000000000; 	// in
+instructionRAM[23] = 32'b010000_00011_10101_1111111111111111; 	// sw
+instructionRAM[24] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[25] = 32'b001111_00011_01011_1111111111111111; 	// lw
+instructionRAM[26] = 32'b100000_01011_00111_0000000000000000; 	// mov
+instructionRAM[27] = 32'b011010_00000000000000000000000001; 	// jal
+instructionRAM[28] = 32'b100000_00001_10110_0000000000000000; 	// mov
+instructionRAM[29] = 32'b001100_00011_00011_0000000000000010; 	// subi
+instructionRAM[30] = 32'b010000_00011_10110_0000000000000000; 	// sw
+instructionRAM[31] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[32] = 32'b001111_00011_01100_0000000000000000; 	// lw
+instructionRAM[33] = 32'b100000_01100_00111_0000000000000000; 	// mov
+instructionRAM[34] = 32'b010110_00111_000000000000000000000; 	// out
+instructionRAM[35] = 32'b011001_00000000000000000000000000; 	// reset
+instructionRAM[36] = 32'b011000_00000000000000000000000000; 	// halt

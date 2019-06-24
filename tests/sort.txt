@@ -1,5 +1,5 @@
 # C- compilation for the intermediate code
-# File: sort.txt
+# File: tests/sort.txt
     # -> type int
         # -> function declaration
         # input
@@ -11,17 +11,6 @@
         # output
         # <- function declaration
     # <- type void
-
-    # -> type int
-        # -> vector
-        # vet
-        # -> vector: position
-            # -> constant
-            # 10
-            # <- constant
-        # <- vector: position
-        # <- vector
-    # <- type int
 
     # -> type int
         # -> function declaration
@@ -203,7 +192,7 @@
 
     # -> type void
         # -> function declaration
-        # sort
+        # selectionSort
                 # -> type int
                     # -> identifier
                     # i
@@ -376,6 +365,17 @@
                     # <- identifier
                 # <- type int
 
+                # -> type int
+                    # -> vector
+                    # vet
+                    # -> vector: position
+                        # -> constant
+                        # 5
+                        # <- constant
+                    # <- vector: position
+                    # <- vector
+                # <- type int
+
                 # -> assign
                 # -> assign: right argument
                     # -> constant
@@ -398,7 +398,7 @@
                     # <- arithmetic operator: left argument
                     # -> arithmetic operator: right argument
                         # -> constant
-                        # 10
+                        # 5
                         # <- constant
                     # <- arithmetic operator: right argument
                     # relational operator: <
@@ -424,19 +424,6 @@
                             # <- vector
                         # <- assign: left argument
                         # <- assign
-                        # -> function call
-                        # output
-                        # -> function call: arguments
-                            # -> vector
-                            # vet
-                            # -> vector: position
-                                # -> identifier
-                                # i
-                                # <- identifier
-                            # <- vector: position
-                            # <- vector
-                        # <- function call: arguments
-                        # <- function call
                         # -> assign
                         # -> assign: right argument
                             # -> arithmetic operator
@@ -462,7 +449,7 @@
                 # <- while: while block
                 # <- while
                 # -> function call
-                # sort
+                # selectionSort
                 # -> function call: arguments
                     # -> identifier
                     # vet
@@ -471,7 +458,7 @@
                     # 0
                     # <- constant
                     # -> constant
-                    # 10
+                    # 5
                     # <- constant
                 # <- function call: arguments
                 # <- function call
@@ -497,7 +484,7 @@
                     # <- arithmetic operator: left argument
                     # -> arithmetic operator: right argument
                         # -> constant
-                        # 10
+                        # 3
                         # <- constant
                     # <- arithmetic operator: right argument
                     # relational operator: <
@@ -553,87 +540,83 @@
 3: (get_param, low, _, _)
 4: (get_param, high, _, _)
 5: (assign, k, low, _)
-6: (vector_value, a, low, t2)
-7: (assign, x, t2, _)
-8: (addition, low, 1, t3)
-9: (assign, i, t3, _)
+6: (vector_value, a, low, t1)
+7: (assign, x, t1, _)
+8: (addition, low, 1, t2)
+9: (assign, i, t2, _)
 10: (label, L1, _, _)
-11: (less_than, i, high, t4)
-12: (jump_if_false, t4, L3, _)
-13: (vector_value, a, i, t5)
-14: (less_than, t5, x, t6)
-15: (jump_if_false, t6, L2, _)
-16: (vector_value, a, i, t7)
-17: (assign, x, t7, _)
+11: (less_than, i, high, t3)
+12: (jump_if_false, t3, L3, _)
+13: (vector_value, a, i, t4)
+14: (less_than, t4, x, t5)
+15: (jump_if_false, t5, L2, _)
+16: (vector_value, a, i, t6)
+17: (assign, x, t6, _)
 18: (assign, k, i, _)
 19: (label, L2, _, _)
-20: (addition, i, 1, t8)
-21: (assign, i, t8, _)
+20: (addition, i, 1, t7)
+21: (assign, i, t7, _)
 22: (goto, L1, _, _)
 23: (label, L3, _, _)
 24: (return, k, _, _)
-25: (function, sort, _, _)
+25: (function, selectionSort, _, _)
 26: (get_param, a, _, _)
 27: (get_param, low, _, _)
 28: (get_param, high, _, _)
 29: (assign, i, low, _)
 30: (label, L4, _, _)
-31: (subtraction, high, 1, t9)
-32: (less_than, i, t9, t10)
-33: (jump_if_false, t10, L5, _)
+31: (subtraction, high, 1, t8)
+32: (less_than, i, t8, t9)
+33: (jump_if_false, t9, L5, _)
 34: (param_list, 3, _, _)
 35: (set_param, a, _, _)
 36: (set_param, i, _, _)
 37: (set_param, high, _, _)
-38: (call, minloc, 3, t11)
-39: (assign, k, t11, _)
-40: (vector_value, a, k, t12)
-41: (assign, t, t12, _)
-42: (vector_value, a, i, t13)
-43: (vector_address, a, k, t14)
-44: (assign, t14, t13, _)
-45: (vector_address, a, i, t15)
-46: (assign, t15, t, _)
-47: (addition, i, 1, t16)
-48: (assign, i, t16, _)
+38: (call, minloc, 3, t10)
+39: (assign, k, t10, _)
+40: (vector_value, a, k, t11)
+41: (assign, t, t11, _)
+42: (vector_value, a, i, t12)
+43: (vector_address, a, k, t13)
+44: (assign, t13, t12, _)
+45: (vector_address, a, i, t14)
+46: (assign, t14, t, _)
+47: (addition, i, 1, t15)
+48: (assign, i, t15, _)
 49: (goto, L4, _, _)
 50: (label, L5, _, _)
 51: (return, _, _, _)
 52: (function, main, _, _)
 53: (assign, i, 0, _)
 54: (label, L6, _, _)
-55: (less_than, i, 10, t17)
+55: (less_than, i, 5, t17)
 56: (jump_if_false, t17, L7, _)
 57: (param_list, 0, _, _)
 58: (call, input, 0, t18)
 59: (vector_address, vet, i, t19)
 60: (assign, t19, t18, _)
-61: (param_list, 1, _, _)
-62: (vector_value, vet, i, t20)
-63: (set_param, t20, _, _)
-64: (call, output, 1, t21)
-65: (addition, i, 1, t22)
-66: (assign, i, t22, _)
-67: (goto, L6, _, _)
-68: (label, L7, _, _)
-69: (param_list, 3, _, _)
-70: (set_param, vet, _, _)
-71: (set_param, 0, _, _)
-72: (set_param, 10, _, _)
-73: (call, sort, 3, t23)
-74: (assign, i, 0, _)
-75: (label, L8, _, _)
-76: (less_than, i, 10, t24)
-77: (jump_if_false, t24, L9, _)
-78: (param_list, 1, _, _)
-79: (vector_value, vet, i, t25)
-80: (set_param, t25, _, _)
-81: (call, output, 1, t26)
-82: (addition, i, 1, t27)
-83: (assign, i, t27, _)
-84: (goto, L8, _, _)
-85: (label, L9, _, _)
-86: (halt, _, _, _)
+61: (addition, i, 1, t20)
+62: (assign, i, t20, _)
+63: (goto, L6, _, _)
+64: (label, L7, _, _)
+65: (param_list, 3, _, _)
+66: (set_param, vet, _, _)
+67: (set_param, 0, _, _)
+68: (set_param, 5, _, _)
+69: (call, selectionSort, 3, t21)
+70: (assign, i, 0, _)
+71: (label, L8, _, _)
+72: (less_than, i, 3, t22)
+73: (jump_if_false, t22, L9, _)
+74: (param_list, 1, _, _)
+75: (vector_value, vet, i, t23)
+76: (set_param, t23, _, _)
+77: (call, output, 1, t24)
+78: (addition, i, 1, t25)
+79: (assign, i, t25, _)
+80: (goto, L8, _, _)
+81: (label, L9, _, _)
+82: (halt, _, _, _)
 
 ********** Código objeto **********
 
@@ -643,207 +626,235 @@ minloc:
     2:	mov	$s1, $a1
     3:	mov	$s2, $a2
     4:	sw	$s1, 0($sp)
-    5:	add	$t0, $s0, $s1
-    6:	lw	$t0, 0($t0)
-    7:	sw	$t0, -1($sp)
-    8:	addi	$t1, $s1, 1
-    9:	sw	$t1, -2($sp)
+    5:	nop	
+    6:	add	$t0, $s0, $s1
+    7:	lw	$t0, 0($t0)
+    8:	sw	$t0, -1($sp)
+    9:	nop	
+    10:	addi	$t1, $s1, 1
+    11:	sw	$t1, -2($sp)
+    12:	nop	
 .L1	
-    10:	lw	$s3, -2($sp)
-    11:	blt	$s3, $s2, L3
-    12:	add	$t2, $s0, $s3
-    13:	lw	$t2, 0($t2)
-    14:	lw	$s4, -1($sp)
-    15:	blt	$t2, $s4, L2
-    16:	add	$t3, $s0, $s3
-    17:	lw	$t3, 0($t3)
-    18:	sw	$t3, -1($sp)
-    19:	sw	$s3, 0($sp)
+    13:	lw	$s3, -2($sp)
+    14:	blt	$s3, $s2, L3
+    15:	add	$t2, $s0, $s3
+    16:	lw	$t2, 0($t2)
+    17:	lw	$s4, -1($sp)
+    18:	blt	$t2, $s4, L2
+    19:	add	$t3, $s0, $s3
+    20:	lw	$t3, 0($t3)
+    21:	sw	$t3, -1($sp)
+    22:	nop	
+    23:	sw	$s3, 0($sp)
+    24:	nop	
 .L2	
-    20:	addi	$t4, $s3, 1
-    21:	sw	$t4, -2($sp)
-    22:	j	L1
+    25:	addi	$t4, $s3, 1
+    26:	sw	$t4, -2($sp)
+    27:	nop	
+    28:	j	L1
 .L3	
-    23:	lw	$s5, 0($sp)
-    24:	mov	$v0, $s5
-    25:	jr	$ra
+    29:	lw	$s5, 0($sp)
+    30:	mov	$v0, $s5
+    31:	jr	$ra
 
-sort:
-    26:	addi	$sp, $sp, 7
-    27:	mov	$s0, $a0
-    28:	mov	$s1, $a1
-    29:	mov	$s2, $a2
-    30:	sw	$s1, -2($sp)
+selectionSort:
+    32:	addi	$sp, $sp, 7
+    33:	mov	$s0, $a0
+    34:	mov	$s1, $a1
+    35:	mov	$s2, $a2
+    36:	sw	$s1, -2($sp)
+    37:	nop	
 .L4	
-    31:	subi	$t0, $s2, 1
-    32:	lw	$s3, -2($sp)
-    33:	blt	$s3, $t0, L5
-    34:	la	$inv, -5($sp)
-    35:	mov	$a1, $s3
-    36:	mov	$a2, $s2
-    37:	sw	$ra, 1($sp)
-    38:	jal	minloc
-    39:	subi	$sp, $sp, 7
-    40:	lw	$ra, 1($sp)
-    41:	mov	$t1, $v0
-    42:	sw	$t1, -1($sp)
-    43:	lw	$s4, -1($sp)
-    44:	add	$t2, $s0, $s4
-    45:	lw	$t2, 0($t2)
-    46:	sw	$t2, 0($sp)
-    47:	lw	$s5, -2($sp)
-    48:	add	$t3, $s0, $s5
-    49:	lw	$t3, 0($t3)
-    50:	add	$t4, $s0, $s4
-    51:	sw	$t3, 0($t4)
-    52:	add	$t5, $s0, $s5
-    53:	lw	$s6, 0($sp)
-    54:	sw	$s6, 0($t5)
-    55:	addi	$t6, $s5, 1
-    56:	sw	$t6, -2($sp)
-    57:	j	L4
+    38:	subi	$t0, $s2, 1
+    39:	lw	$s3, -2($sp)
+    40:	blt	$s3, $t0, L5
+    41:	la	$inv, -5($sp)
+    42:	mov	$a1, $s3
+    43:	mov	$a2, $s2
+    44:	sw	$ra, 1($sp)
+    45:	nop	
+    46:	jal	minloc
+    47:	subi	$sp, $sp, 7
+    48:	lw	$ra, 1($sp)
+    49:	mov	$t1, $v0
+    50:	sw	$t1, -1($sp)
+    51:	nop	
+    52:	lw	$s4, -1($sp)
+    53:	add	$t2, $s0, $s4
+    54:	lw	$t2, 0($t2)
+    55:	sw	$t2, 0($sp)
+    56:	nop	
+    57:	lw	$s5, -2($sp)
+    58:	add	$t3, $s0, $s5
+    59:	lw	$t3, 0($t3)
+    60:	add	$t4, $s0, $s4
+    61:	sw	$t3, 0($t4)
+    62:	nop	
+    63:	add	$t5, $s0, $s5
+    64:	lw	$s6, 0($sp)
+    65:	sw	$s6, 0($t5)
+    66:	nop	
+    67:	addi	$t6, $s5, 1
+    68:	sw	$t6, -2($sp)
+    69:	nop	
+    70:	j	L4
 .L5	
-    58:	jr	$ra
+    71:	jr	$ra
 
 main:
-    59:	addi	$sp, $sp, 10
-    60:	li	$t0, 0
-    61:	sw	$t0, 0($sp)
+    72:	addi	$sp, $sp, 5
+    73:	li	$t0, 0
+    74:	sw	$t0, -5($sp)
+    75:	nop	
 .L6	
-    62:	lw	$s0, 0($sp)
-    63:	li	$t1, 10
-    64:	blt	$s0, $t1, L7
-    65:	halt	
-    66:	in	$t2
-    67:	la	$s1, 0($gp)
-    68:	add	$t3, $s1, $s0
-    69:	sw	$t2, 0($t3)
-    70:	add	$t4, $s1, $s0
-    71:	lw	$t4, 0($t4)
-    72:	mov	$a0, $t4
-    73:	out	$a0, 0
-    74:	addi	$t5, $s0, 1
-    75:	sw	$t5, 0($sp)
-    76:	j	L6
+    76:	lw	$s0, -5($sp)
+    77:	li	$t1, 5
+    78:	blt	$s0, $t1, L7
+    79:	in	$t2
+    80:	la	$s1, -4($sp)
+    81:	add	$t3, $s1, $s0
+    82:	sw	$t2, 0($t3)
+    83:	nop	
+    84:	addi	$t4, $s0, 1
+    85:	sw	$t4, -5($sp)
+    86:	nop	
+    87:	j	L6
 .L7	
-    77:	la	$a2, 0($sp)
-    78:	li	$a1, 0
-    79:	li	$a2, 10
-    80:	jal	sort
-    81:	mov	$t6, $v0
-    82:	subi	$sp, $sp, 7
-    83:	li	$t7, 0
-    84:	sw	$t7, 0($sp)
+    88:	la	$a2, -4($sp)
+    89:	li	$a1, 0
+    90:	li	$a2, 5
+    91:	jal	selectionSort
+    92:	mov	$t5, $v0
+    93:	subi	$sp, $sp, 7
+    94:	li	$t6, 0
+    95:	sw	$t6, -5($sp)
+    96:	nop	
 .L8	
-    85:	lw	$s2, 0($sp)
-    86:	li	$t8, 10
-    87:	blt	$s2, $t8, L9
-    88:	add	$t9, $s1, $s2
-    89:	lw	$t9, 0($t9)
-    90:	mov	$a0, $t9
-    91:	out	$a0, 0
-    92:	addi	$t0, $s2, 1
-    93:	sw	$t0, 0($sp)
-    94:	j	L8
+    97:	lw	$s2, -5($sp)
+    98:	li	$t7, 3
+    99:	blt	$s2, $t7, L9
+    100:	add	$t8, $s1, $s2
+    101:	lw	$t8, 0($t8)
+    102:	mov	$a0, $t8
+    103:	out	$a0, 0
+    104:	addi	$t9, $s2, 1
+    105:	sw	$t9, -5($sp)
+    106:	nop	
+    107:	j	L8
 .L9	
-    95:	halt	
+    108:	reset	
+    109:	halt	
 
 ********** Código binário **********
 
-instructionRAM[0] = 32'b010111_00000000000000000000111100; 	// Jump to Main
+instructionRAM[0] = 32'b010111_00000000000000000001001001; 	// Jump to Main
 instructionRAM[1] = 32'b001011_00011_00011_0000000000000111; 	// addi
 instructionRAM[2] = 32'b100000_00111_01011_0000000000000000; 	// mov
 instructionRAM[3] = 32'b100000_01000_01100_0000000000000000; 	// mov
 instructionRAM[4] = 32'b100000_01001_01101_0000000000000000; 	// mov
 instructionRAM[5] = 32'b010000_00011_01100_0000000000000000; 	// sw
-instructionRAM[6] = 32'b000000_01011_01100_10101_00000000000; 	// add
-instructionRAM[7] = 32'b001111_10101_10101_0000000000000000; 	// lw
-instructionRAM[8] = 32'b010000_00011_10101_1111111111111111; 	// sw
-instructionRAM[9] = 32'b001011_01100_10110_0000000000000001; 	// addi
-instructionRAM[10] = 32'b010000_00011_10110_1111111111111110; 	// sw
-instructionRAM[11] = 32'b001111_00011_01110_1111111111111110; 	// lw
-instructionRAM[12] = 32'b011100_01110_01101_0000000000011000; 	// blt
-instructionRAM[13] = 32'b000000_01011_01110_10111_00000000000; 	// add
-instructionRAM[14] = 32'b001111_10111_10111_0000000000000000; 	// lw
-instructionRAM[15] = 32'b001111_00011_01111_1111111111111111; 	// lw
-instructionRAM[16] = 32'b011100_10111_01111_0000000000010101; 	// blt
-instructionRAM[17] = 32'b000000_01011_01110_11000_00000000000; 	// add
-instructionRAM[18] = 32'b001111_11000_11000_0000000000000000; 	// lw
-instructionRAM[19] = 32'b010000_00011_11000_1111111111111111; 	// sw
-instructionRAM[20] = 32'b010000_00011_01110_0000000000000000; 	// sw
-instructionRAM[21] = 32'b001011_01110_11001_0000000000000001; 	// addi
-instructionRAM[22] = 32'b010000_00011_11001_1111111111111110; 	// sw
-instructionRAM[23] = 32'b010111_00000000000000000000001011; 	// j
-instructionRAM[24] = 32'b001111_00011_10000_0000000000000000; 	// lw
-instructionRAM[25] = 32'b100000_10000_00001_0000000000000000; 	// mov
-instructionRAM[26] = 32'b011011_00000_11111_0000000000000000; 	// jr
-instructionRAM[27] = 32'b001011_00011_00011_0000000000000111; 	// addi
-instructionRAM[28] = 32'b100000_00111_01011_0000000000000000; 	// mov
-instructionRAM[29] = 32'b100000_01000_01100_0000000000000000; 	// mov
-instructionRAM[30] = 32'b100000_01001_01101_0000000000000000; 	// mov
-instructionRAM[31] = 32'b010000_00011_01100_1111111111111110; 	// sw
-instructionRAM[32] = 32'b001100_01101_10101_0000000000000001; 	// subi
-instructionRAM[33] = 32'b001111_00011_01110_1111111111111110; 	// lw
-instructionRAM[34] = 32'b011100_01110_10101_0000000000111011; 	// blt
-instructionRAM[35] = 32'b010001_00011_00100_1111111111111011; 	// la
-instructionRAM[36] = 32'b100000_01110_01000_0000000000000000; 	// mov
-instructionRAM[37] = 32'b100000_01101_01001_0000000000000000; 	// mov
-instructionRAM[38] = 32'b010000_00011_11111_0000000000000001; 	// sw
-instructionRAM[39] = 32'b011010_00000000000000000000000001; 	// jal
-instructionRAM[40] = 32'b001100_00011_00011_0000000000000111; 	// subi
-instructionRAM[41] = 32'b001111_00011_11111_0000000000000001; 	// lw
-instructionRAM[42] = 32'b100000_00001_10110_0000000000000000; 	// mov
-instructionRAM[43] = 32'b010000_00011_10110_1111111111111111; 	// sw
-instructionRAM[44] = 32'b001111_00011_01111_1111111111111111; 	// lw
-instructionRAM[45] = 32'b000000_01011_01111_10111_00000000000; 	// add
-instructionRAM[46] = 32'b001111_10111_10111_0000000000000000; 	// lw
-instructionRAM[47] = 32'b010000_00011_10111_0000000000000000; 	// sw
-instructionRAM[48] = 32'b001111_00011_10000_1111111111111110; 	// lw
-instructionRAM[49] = 32'b000000_01011_10000_11000_00000000000; 	// add
-instructionRAM[50] = 32'b001111_11000_11000_0000000000000000; 	// lw
-instructionRAM[51] = 32'b000000_01011_01111_11001_00000000000; 	// add
-instructionRAM[52] = 32'b010000_11001_11000_0000000000000000; 	// sw
-instructionRAM[53] = 32'b000000_01011_10000_11010_00000000000; 	// add
-instructionRAM[54] = 32'b001111_00011_10001_0000000000000000; 	// lw
-instructionRAM[55] = 32'b010000_11010_10001_0000000000000000; 	// sw
-instructionRAM[56] = 32'b001011_10000_11011_0000000000000001; 	// addi
-instructionRAM[57] = 32'b010000_00011_11011_1111111111111110; 	// sw
-instructionRAM[58] = 32'b010111_00000000000000000000100000; 	// j
-instructionRAM[59] = 32'b011011_00000_11111_0000000000000000; 	// jr
-instructionRAM[60] = 32'b001011_00011_00011_0000000000001010; 	// addi
-instructionRAM[61] = 32'b100001_00000_10101_0000000000000000; 	// li
-instructionRAM[62] = 32'b010000_00011_10101_0000000000000000; 	// sw
-instructionRAM[63] = 32'b001111_00011_01011_0000000000000000; 	// lw
-instructionRAM[64] = 32'b100001_00000_10110_0000000000001010; 	// li
-instructionRAM[65] = 32'b011100_01011_10110_0000000001001110; 	// blt
-instructionRAM[66] = 32'b011000_00000000000000000000000000; 	// halt
-instructionRAM[67] = 32'b010101_00000_10111_0000000000000000; 	// in
-instructionRAM[68] = 32'b010001_00101_01100_0000000000000000; 	// la
-instructionRAM[69] = 32'b000000_01100_01011_11000_00000000000; 	// add
-instructionRAM[70] = 32'b010000_11000_10111_0000000000000000; 	// sw
-instructionRAM[71] = 32'b000000_01100_01011_11001_00000000000; 	// add
-instructionRAM[72] = 32'b001111_11001_11001_0000000000000000; 	// lw
-instructionRAM[73] = 32'b100000_11001_00111_0000000000000000; 	// mov
-instructionRAM[74] = 32'b010110_00111_000000000000000000000; 	// out
-instructionRAM[75] = 32'b001011_01011_11010_0000000000000001; 	// addi
-instructionRAM[76] = 32'b010000_00011_11010_0000000000000000; 	// sw
-instructionRAM[77] = 32'b010111_00000000000000000000111111; 	// j
-instructionRAM[78] = 32'b010001_00011_01001_0000000000000000; 	// la
-instructionRAM[79] = 32'b100001_00000_01000_0000000000000000; 	// li
-instructionRAM[80] = 32'b100001_00000_01001_0000000000001010; 	// li
-instructionRAM[81] = 32'b011010_00000000000000000000011011; 	// jal
-instructionRAM[82] = 32'b100000_00001_11011_0000000000000000; 	// mov
-instructionRAM[83] = 32'b001100_00011_00011_0000000000000111; 	// subi
-instructionRAM[84] = 32'b100001_00000_11100_0000000000000000; 	// li
-instructionRAM[85] = 32'b010000_00011_11100_0000000000000000; 	// sw
-instructionRAM[86] = 32'b001111_00011_01101_0000000000000000; 	// lw
-instructionRAM[87] = 32'b100001_00000_11101_0000000000001010; 	// li
-instructionRAM[88] = 32'b011100_01101_11101_0000000001100000; 	// blt
-instructionRAM[89] = 32'b000000_01100_01101_11110_00000000000; 	// add
-instructionRAM[90] = 32'b001111_11110_11110_0000000000000000; 	// lw
-instructionRAM[91] = 32'b100000_11110_00111_0000000000000000; 	// mov
-instructionRAM[92] = 32'b010110_00111_000000000000000000000; 	// out
-instructionRAM[93] = 32'b001011_01101_10101_0000000000000001; 	// addi
-instructionRAM[94] = 32'b010000_00011_10101_0000000000000000; 	// sw
-instructionRAM[95] = 32'b010111_00000000000000000001010110; 	// j
-instructionRAM[96] = 32'b011000_00000000000000000000000000; 	// halt
+instructionRAM[6] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[7] = 32'b000000_01011_01100_10101_00000000000; 	// add
+instructionRAM[8] = 32'b001111_10101_10101_0000000000000000; 	// lw
+instructionRAM[9] = 32'b010000_00011_10101_1111111111111111; 	// sw
+instructionRAM[10] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[11] = 32'b001011_01100_10110_0000000000000001; 	// addi
+instructionRAM[12] = 32'b010000_00011_10110_1111111111111110; 	// sw
+instructionRAM[13] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[14] = 32'b001111_00011_01110_1111111111111110; 	// lw
+instructionRAM[15] = 32'b011100_01110_01101_0000000000011110; 	// blt
+instructionRAM[16] = 32'b000000_01011_01110_10111_00000000000; 	// add
+instructionRAM[17] = 32'b001111_10111_10111_0000000000000000; 	// lw
+instructionRAM[18] = 32'b001111_00011_01111_1111111111111111; 	// lw
+instructionRAM[19] = 32'b011100_10111_01111_0000000000011010; 	// blt
+instructionRAM[20] = 32'b000000_01011_01110_11000_00000000000; 	// add
+instructionRAM[21] = 32'b001111_11000_11000_0000000000000000; 	// lw
+instructionRAM[22] = 32'b010000_00011_11000_1111111111111111; 	// sw
+instructionRAM[23] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[24] = 32'b010000_00011_01110_0000000000000000; 	// sw
+instructionRAM[25] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[26] = 32'b001011_01110_11001_0000000000000001; 	// addi
+instructionRAM[27] = 32'b010000_00011_11001_1111111111111110; 	// sw
+instructionRAM[28] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[29] = 32'b010111_00000000000000000000001110; 	// j
+instructionRAM[30] = 32'b001111_00011_10000_0000000000000000; 	// lw
+instructionRAM[31] = 32'b100000_10000_00001_0000000000000000; 	// mov
+instructionRAM[32] = 32'b011011_00000_11111_0000000000000000; 	// jr
+instructionRAM[33] = 32'b001011_00011_00011_0000000000000111; 	// addi
+instructionRAM[34] = 32'b100000_00111_01011_0000000000000000; 	// mov
+instructionRAM[35] = 32'b100000_01000_01100_0000000000000000; 	// mov
+instructionRAM[36] = 32'b100000_01001_01101_0000000000000000; 	// mov
+instructionRAM[37] = 32'b010000_00011_01100_1111111111111110; 	// sw
+instructionRAM[38] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[39] = 32'b001100_01101_10101_0000000000000001; 	// subi
+instructionRAM[40] = 32'b001111_00011_01110_1111111111111110; 	// lw
+instructionRAM[41] = 32'b011100_01110_10101_0000000001001000; 	// blt
+instructionRAM[42] = 32'b010001_00011_00100_1111111111111011; 	// la
+instructionRAM[43] = 32'b100000_01110_01000_0000000000000000; 	// mov
+instructionRAM[44] = 32'b100000_01101_01001_0000000000000000; 	// mov
+instructionRAM[45] = 32'b010000_00011_11111_0000000000000001; 	// sw
+instructionRAM[46] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[47] = 32'b011010_00000000000000000000000001; 	// jal
+instructionRAM[48] = 32'b001100_00011_00011_0000000000000111; 	// subi
+instructionRAM[49] = 32'b001111_00011_11111_0000000000000001; 	// lw
+instructionRAM[50] = 32'b100000_00001_10110_0000000000000000; 	// mov
+instructionRAM[51] = 32'b010000_00011_10110_1111111111111111; 	// sw
+instructionRAM[52] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[53] = 32'b001111_00011_01111_1111111111111111; 	// lw
+instructionRAM[54] = 32'b000000_01011_01111_10111_00000000000; 	// add
+instructionRAM[55] = 32'b001111_10111_10111_0000000000000000; 	// lw
+instructionRAM[56] = 32'b010000_00011_10111_0000000000000000; 	// sw
+instructionRAM[57] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[58] = 32'b001111_00011_10000_1111111111111110; 	// lw
+instructionRAM[59] = 32'b000000_01011_10000_11000_00000000000; 	// add
+instructionRAM[60] = 32'b001111_11000_11000_0000000000000000; 	// lw
+instructionRAM[61] = 32'b000000_01011_01111_11001_00000000000; 	// add
+instructionRAM[62] = 32'b010000_11001_11000_0000000000000000; 	// sw
+instructionRAM[63] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[64] = 32'b000000_01011_10000_11010_00000000000; 	// add
+instructionRAM[65] = 32'b001111_00011_10001_0000000000000000; 	// lw
+instructionRAM[66] = 32'b010000_11010_10001_0000000000000000; 	// sw
+instructionRAM[67] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[68] = 32'b001011_10000_11011_0000000000000001; 	// addi
+instructionRAM[69] = 32'b010000_00011_11011_1111111111111110; 	// sw
+instructionRAM[70] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[71] = 32'b010111_00000000000000000000100111; 	// j
+instructionRAM[72] = 32'b011011_00000_11111_0000000000000000; 	// jr
+instructionRAM[73] = 32'b001011_00011_00011_0000000000000101; 	// addi
+instructionRAM[74] = 32'b010100_00000_10101_0000000000000000; 	// li
+instructionRAM[75] = 32'b010000_00011_10101_1111111111111011; 	// sw
+instructionRAM[76] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[77] = 32'b001111_00011_01011_1111111111111011; 	// lw
+instructionRAM[78] = 32'b010100_00000_10110_0000000000000101; 	// li
+instructionRAM[79] = 32'b011100_01011_10110_0000000001011001; 	// blt
+instructionRAM[80] = 32'b010101_00000_10111_0000000000000000; 	// in
+instructionRAM[81] = 32'b010001_00011_01100_1111111111111100; 	// la
+instructionRAM[82] = 32'b000000_01100_01011_11000_00000000000; 	// add
+instructionRAM[83] = 32'b010000_11000_10111_0000000000000000; 	// sw
+instructionRAM[84] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[85] = 32'b001011_01011_11001_0000000000000001; 	// addi
+instructionRAM[86] = 32'b010000_00011_11001_1111111111111011; 	// sw
+instructionRAM[87] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[88] = 32'b010111_00000000000000000001001101; 	// j
+instructionRAM[89] = 32'b010001_00011_01001_1111111111111100; 	// la
+instructionRAM[90] = 32'b010100_00000_01000_0000000000000000; 	// li
+instructionRAM[91] = 32'b010100_00000_01001_0000000000000101; 	// li
+instructionRAM[92] = 32'b011010_00000000000000000000100001; 	// jal
+instructionRAM[93] = 32'b100000_00001_11010_0000000000000000; 	// mov
+instructionRAM[94] = 32'b001100_00011_00011_0000000000000111; 	// subi
+instructionRAM[95] = 32'b010100_00000_11011_0000000000000000; 	// li
+instructionRAM[96] = 32'b010000_00011_11011_1111111111111011; 	// sw
+instructionRAM[97] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[98] = 32'b001111_00011_01101_1111111111111011; 	// lw
+instructionRAM[99] = 32'b010100_00000_11100_0000000000000011; 	// li
+instructionRAM[100] = 32'b011100_01101_11100_0000000001101101; 	// blt
+instructionRAM[101] = 32'b000000_01100_01101_11101_00000000000; 	// add
+instructionRAM[102] = 32'b001111_11101_11101_0000000000000000; 	// lw
+instructionRAM[103] = 32'b100000_11101_00111_0000000000000000; 	// mov
+instructionRAM[104] = 32'b010110_00111_000000000000000000000; 	// out
+instructionRAM[105] = 32'b001011_01101_11110_0000000000000001; 	// addi
+instructionRAM[106] = 32'b010000_00011_11110_1111111111111011; 	// sw
+instructionRAM[107] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[108] = 32'b010111_00000000000000000001100010; 	// j
+instructionRAM[109] = 32'b011001_00000000000000000000000000; 	// reset
+instructionRAM[110] = 32'b011000_00000000000000000000000000; 	// halt

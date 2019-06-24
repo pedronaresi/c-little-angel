@@ -16,12 +16,12 @@
 // Set NO_ANALYZE to TRUE to get a parser-only compiler.
 #define NO_ANALYZE FALSE
 
-// Set NO_CODE to TRUE to get a compiler that does not generate code.
-#define NO_CODE FALSE
+// Set NO_INTERMIDIATE_CODE to TRUE to get a compiler that does not generate code.
+#define NO_INTERMIDIATE_CODE FALSE
 
-// Set NO_TARGET_CODE to TRUE to get a compiler that does not generate
+// Set NO_OBJECT_CODE to TRUE to get a compiler that does not generate
 // object code.
-#define NO_TARGET_CODE FALSE
+#define NO_OBJECT_CODE FALSE
 
 // Set NO_BINARY_CODE to TRUE to get a compiler that does not generate binary
 // code.
@@ -34,9 +34,9 @@
 #include "parse.h"
 #if !NO_ANALYZE
 #include "analyze.h"
-#if !NO_CODE
+#if !NO_INTERMIDIATE_CODE
 #include "cgen.h"
-#if !NO_ASSEMBLY_CODE
+#if !NO_OBJECT_CODE
 #include "assembly.h"
 #if !NO_BINARY_CODE
 #include "binary.h"
@@ -105,7 +105,7 @@ int main(int argc, char * argv[]) {
       if (TraceAnalyze)
         fprintf(listing,"\nType Checking Finished\n");
     }
-  #if !NO_CODE
+  #if !NO_INTERMIDIATE_CODE
     if (!Error) {
       char * codefile;
       int fnlen = strcspn(pgm,".");
@@ -125,7 +125,7 @@ int main(int argc, char * argv[]) {
         fprintf(listing, "\nIntermediate Code generation finished!\n");
       intermediateCodeGenerated = TRUE;
     }
-  #if !NO_ASSEMBLY_CODE
+  #if !NO_OBJECT_CODE
   if(intermediateCodeGenerated) {
     char * codefile;
     int fnlen = strcspn(pgm, ".");

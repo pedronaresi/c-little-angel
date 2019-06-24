@@ -1,5 +1,0 @@
-void main(void){
-  int n;
-  n = input();
-  output(n);
-}

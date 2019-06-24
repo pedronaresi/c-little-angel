@@ -1,5 +1,5 @@
 # C- compilation for the intermediate code
-# File: gdc.txt
+# File: tests/gcd.txt
     # -> type int
         # -> function declaration
         # input
@@ -137,22 +137,6 @@
                 # -> function call
                 # output
                 # -> function call: arguments
-                    # -> identifier
-                    # x
-                    # <- identifier
-                # <- function call: arguments
-                # <- function call
-                # -> function call
-                # output
-                # -> function call: arguments
-                    # -> identifier
-                    # y
-                    # <- identifier
-                # <- function call: arguments
-                # <- function call
-                # -> function call
-                # output
-                # -> function call: arguments
                     # -> function call
                     # gcd
                     # -> function call: arguments
@@ -199,19 +183,13 @@
 24: (call, input, 0, t7)
 25: (assign, y, t7, _)
 26: (param_list, 1, _, _)
-27: (set_param, x, _, _)
-28: (call, output, 1, t8)
-29: (param_list, 1, _, _)
-30: (set_param, y, _, _)
-31: (call, output, 1, t9)
-32: (param_list, 1, _, _)
-33: (param_list, 2, _, _)
-34: (set_param, x, _, _)
-35: (set_param, y, _, _)
-36: (call, gcd, 2, t10)
-37: (set_param, t10, _, _)
-38: (call, output, 1, t11)
-39: (halt, _, _, _)
+27: (param_list, 2, _, _)
+28: (set_param, x, _, _)
+29: (set_param, y, _, _)
+30: (call, gcd, 2, t8)
+31: (set_param, t8, _, _)
+32: (call, output, 1, t9)
+33: (halt, _, _, _)
 
 ********** Código objeto **********
 
@@ -232,85 +210,77 @@ gcd:
     12:	sub	$t3, $s0, $t2
     13:	mov	$a1, $t3
     14:	sw	$ra, 1($sp)
-    15:	jal	gcd
-    16:	subi	$sp, $sp, 3
-    17:	lw	$ra, 1($sp)
-    18:	mov	$t4, $v0
-    19:	mov	$v0, $t4
-    20:	jr	$ra
-.L2	
+    15:	nop	
+    16:	jal	gcd
+    17:	subi	$sp, $sp, 3
+    18:	lw	$ra, 1($sp)
+    19:	mov	$t4, $v0
+    20:	mov	$v0, $t4
     21:	jr	$ra
+.L2	
+    22:	jr	$ra
 
 main:
-    22:	addi	$sp, $sp, 1
-    23:	halt	
+    23:	addi	$sp, $sp, 1
     24:	in	$t0
     25:	sw	$t0, -1($sp)
-    26:	halt	
+    26:	nop	
     27:	in	$t1
     28:	sw	$t1, 0($sp)
-    29:	lw	$s0, -1($sp)
-    30:	mov	$a0, $s0
-    31:	out	$a0, 0
+    29:	nop	
+    30:	lw	$s0, -1($sp)
+    31:	mov	$a0, $s0
     32:	lw	$s1, 0($sp)
-    33:	mov	$a0, $s1
-    34:	out	$a0, 0
-    35:	lw	$s2, -1($sp)
-    36:	mov	$a0, $s2
-    37:	lw	$s3, 0($sp)
-    38:	mov	$a1, $s3
-    39:	jal	gcd
-    40:	mov	$t2, $v0
-    41:	subi	$sp, $sp, 3
-    42:	mov	$a0, $t2
-    43:	out	$a0, 0
-    44:	halt	
+    33:	mov	$a1, $s1
+    34:	jal	gcd
+    35:	mov	$t2, $v0
+    36:	subi	$sp, $sp, 3
+    37:	mov	$a0, $t2
+    38:	out	$a0, 0
+    39:	reset	
+    40:	halt	
 
 ********** Código binário **********
 
-instructionRAM[0] = 32'b010111_00000000000000000000010111; 	// Jump to Main
+instructionRAM[0] = 32'b010111_00000000000000000000011000; 	// Jump to Main
 instructionRAM[1] = 32'b001011_00011_00011_0000000000000011; 	// addi
 instructionRAM[2] = 32'b100000_00111_01011_0000000000000000; 	// mov
 instructionRAM[3] = 32'b100000_01000_01100_0000000000000000; 	// mov
-instructionRAM[4] = 32'b100001_00000_10101_0000000000000000; 	// li
+instructionRAM[4] = 32'b010100_00000_10101_0000000000000000; 	// li
 instructionRAM[5] = 32'b001001_01100_10101_0000000000001001; 	// beq
 instructionRAM[6] = 32'b100000_01011_00001_0000000000000000; 	// mov
 instructionRAM[7] = 32'b011011_00000_11111_0000000000000000; 	// jr
-instructionRAM[8] = 32'b010111_00000000000000000000010110; 	// j
+instructionRAM[8] = 32'b010111_00000000000000000000010111; 	// j
 instructionRAM[9] = 32'b100000_01100_00111_0000000000000000; 	// mov
 instructionRAM[10] = 32'b001111_00011_01101_0000000000000000; 	// lw
-instructionRAM[11] = 32'b000111_01011_01101_10110_00000000000; 	// div
+instructionRAM[11] = 32'b01101_01011_01101_10110_00000000000; 	// div
 instructionRAM[12] = 32'b000110_10110_01101_10111_00000000000; 	// mul
 instructionRAM[13] = 32'b000001_01011_10111_11000_00000000000; 	// sub
 instructionRAM[14] = 32'b100000_11000_01000_0000000000000000; 	// mov
 instructionRAM[15] = 32'b010000_00011_11111_0000000000000001; 	// sw
-instructionRAM[16] = 32'b011010_00000000000000000000000001; 	// jal
-instructionRAM[17] = 32'b001100_00011_00011_0000000000000011; 	// subi
-instructionRAM[18] = 32'b001111_00011_11111_0000000000000001; 	// lw
-instructionRAM[19] = 32'b100000_00001_11001_0000000000000000; 	// mov
-instructionRAM[20] = 32'b100000_11001_00001_0000000000000000; 	// mov
-instructionRAM[21] = 32'b011011_00000_11111_0000000000000000; 	// jr
+instructionRAM[16] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[17] = 32'b011010_00000000000000000000000001; 	// jal
+instructionRAM[18] = 32'b001100_00011_00011_0000000000000011; 	// subi
+instructionRAM[19] = 32'b001111_00011_11111_0000000000000001; 	// lw
+instructionRAM[20] = 32'b100000_00001_11001_0000000000000000; 	// mov
+instructionRAM[21] = 32'b100000_11001_00001_0000000000000000; 	// mov
 instructionRAM[22] = 32'b011011_00000_11111_0000000000000000; 	// jr
-instructionRAM[23] = 32'b001011_00011_00011_0000000000000001; 	// addi
-instructionRAM[24] = 32'b011000_00000000000000000000000000; 	// halt
+instructionRAM[23] = 32'b011011_00000_11111_0000000000000000; 	// jr
+instructionRAM[24] = 32'b001011_00011_00011_0000000000000001; 	// addi
 instructionRAM[25] = 32'b010101_00000_10101_0000000000000000; 	// in
 instructionRAM[26] = 32'b010000_00011_10101_1111111111111111; 	// sw
-instructionRAM[27] = 32'b011000_00000000000000000000000000; 	// halt
+instructionRAM[27] = 32'b100010_00000000000000000000000000; 	// nop
 instructionRAM[28] = 32'b010101_00000_10110_0000000000000000; 	// in
 instructionRAM[29] = 32'b010000_00011_10110_0000000000000000; 	// sw
-instructionRAM[30] = 32'b001111_00011_01011_1111111111111111; 	// lw
-instructionRAM[31] = 32'b100000_01011_00111_0000000000000000; 	// mov
-instructionRAM[32] = 32'b010110_00111_000000000000000000000; 	// out
+instructionRAM[30] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[31] = 32'b001111_00011_01011_1111111111111111; 	// lw
+instructionRAM[32] = 32'b100000_01011_00111_0000000000000000; 	// mov
 instructionRAM[33] = 32'b001111_00011_01100_0000000000000000; 	// lw
-instructionRAM[34] = 32'b100000_01100_00111_0000000000000000; 	// mov
-instructionRAM[35] = 32'b010110_00111_000000000000000000000; 	// out
-instructionRAM[36] = 32'b001111_00011_01101_1111111111111111; 	// lw
-instructionRAM[37] = 32'b100000_01101_00111_0000000000000000; 	// mov
-instructionRAM[38] = 32'b001111_00011_01110_0000000000000000; 	// lw
-instructionRAM[39] = 32'b100000_01110_01000_0000000000000000; 	// mov
-instructionRAM[40] = 32'b011010_00000000000000000000000001; 	// jal
-instructionRAM[41] = 32'b100000_00001_10111_0000000000000000; 	// mov
-instructionRAM[42] = 32'b001100_00011_00011_0000000000000011; 	// subi
-instructionRAM[43] = 32'b100000_10111_00111_0000000000000000; 	// mov
-instructionRAM[44] = 32'b010110_00111_000000000000000000000; 	// out
-instructionRAM[45] = 32'b011000_00000000000000000000000000; 	// halt
+instructionRAM[34] = 32'b100000_01100_01000_0000000000000000; 	// mov
+instructionRAM[35] = 32'b011010_00000000000000000000000001; 	// jal
+instructionRAM[36] = 32'b100000_00001_10111_0000000000000000; 	// mov
+instructionRAM[37] = 32'b001100_00011_00011_0000000000000011; 	// subi
+instructionRAM[38] = 32'b100000_10111_00111_0000000000000000; 	// mov
+instructionRAM[39] = 32'b010110_00111_000000000000000000000; 	// out
+instructionRAM[40] = 32'b011001_00000000000000000000000000; 	// reset
+instructionRAM[41] = 32'b011000_00000000000000000000000000; 	// halt

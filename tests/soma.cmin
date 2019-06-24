@@ -1,0 +1,16 @@
+int cab(int num[]){
+    int sum;
+    sum = num[0] + num[1];
+    output(sum);
+    return sum;
+}
+
+int main(void){
+    int z[2];
+    int k;
+
+    z[0] = input();
+    z[1] = input();
+    k = cab(z);
+    output(k);
+}

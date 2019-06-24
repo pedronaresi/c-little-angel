@@ -1,0 +1,264 @@
+# C- compilation for the intermediate code
+# File: tests/soma.txt
+    # -> type int
+        # -> function declaration
+        # input
+        # <- function declaration
+    # <- type int
+
+    # -> type void
+        # -> function declaration
+        # output
+        # <- function declaration
+    # <- type void
+
+    # -> type int
+        # -> function declaration
+        # cab
+                # -> type int
+                    # -> identifier
+                    # sum
+                    # <- identifier
+                # <- type int
+
+                # -> assign
+                # -> assign: right argument
+                    # -> arithmetic operator
+                    # -> arithmetic operator: left argument
+                        # -> vector
+                        # num
+                        # -> vector: position
+                            # -> constant
+                            # 0
+                            # <- constant
+                        # <- vector: position
+                        # <- vector
+                    # <- arithmetic operator: left argument
+                    # -> arithmetic operator: right argument
+                        # -> vector
+                        # num
+                        # -> vector: position
+                            # -> constant
+                            # 1
+                            # <- constant
+                        # <- vector: position
+                        # <- vector
+                    # <- arithmetic operator: right argument
+                    # arithmetic operator: +
+                    # <- Operator
+                # <- assign: right argument
+                # -> assign: left argument
+                    # -> identifier
+                    # sum
+                    # <- identifier
+                # <- assign: left argument
+                # <- assign
+                # -> function call
+                # output
+                # -> function call: arguments
+                    # -> identifier
+                    # sum
+                    # <- identifier
+                # <- function call: arguments
+                # <- function call
+                # -> return
+                # -> return: expression
+                    # -> identifier
+                    # sum
+                    # <- identifier
+                # <- return: expression
+                # <- return
+        # <- function declaration
+    # <- type int
+
+    # -> type int
+        # -> function declaration
+        # main
+                # -> type int
+                    # -> vector
+                    # z
+                    # -> vector: position
+                        # -> constant
+                        # 2
+                        # <- constant
+                    # <- vector: position
+                    # <- vector
+                # <- type int
+
+                # -> type int
+                    # -> identifier
+                    # k
+                    # <- identifier
+                # <- type int
+
+                # -> assign
+                # -> assign: right argument
+                    # -> function call
+                    # input
+                    # -> function call: arguments
+                    # <- function call: arguments
+                    # <- function call
+                # <- assign: right argument
+                # -> assign: left argument
+                    # -> vector
+                    # z
+                    # -> vector: position
+                        # -> constant
+                        # 0
+                        # <- constant
+                    # <- vector: position
+                    # <- vector
+                # <- assign: left argument
+                # <- assign
+                # -> assign
+                # -> assign: right argument
+                    # -> function call
+                    # input
+                    # -> function call: arguments
+                    # <- function call: arguments
+                    # <- function call
+                # <- assign: right argument
+                # -> assign: left argument
+                    # -> vector
+                    # z
+                    # -> vector: position
+                        # -> constant
+                        # 1
+                        # <- constant
+                    # <- vector: position
+                    # <- vector
+                # <- assign: left argument
+                # <- assign
+                # -> assign
+                # -> assign: right argument
+                    # -> function call
+                    # cab
+                    # -> function call: arguments
+                        # -> identifier
+                        # z
+                        # <- identifier
+                    # <- function call: arguments
+                    # <- function call
+                # <- assign: right argument
+                # -> assign: left argument
+                    # -> identifier
+                    # k
+                    # <- identifier
+                # <- assign: left argument
+                # <- assign
+                # -> function call
+                # output
+                # -> function call: arguments
+                    # -> identifier
+                    # k
+                    # <- identifier
+                # <- function call: arguments
+                # <- function call
+        # <- function declaration
+    # <- type int
+
+# Fim da execução.
+
+********** Intermediate Code **********
+
+1: (function, cab, _, _)
+2: (get_param, num, _, _)
+3: (vector_value, num, 0, t1)
+4: (vector_value, num, 1, t2)
+5: (addition, t1, t2, t3)
+6: (assign, sum, t3, _)
+7: (param_list, 1, _, _)
+8: (set_param, sum, _, _)
+9: (call, output, 1, t4)
+10: (return, sum, _, _)
+11: (function, main, _, _)
+12: (param_list, 0, _, _)
+13: (call, input, 0, t6)
+14: (vector_address, z, 0, t7)
+15: (assign, z, t6, 0)
+16: (param_list, 0, _, _)
+17: (call, input, 0, t8)
+18: (vector_address, z, 1, t9)
+19: (assign, z, t8, 1)
+20: (param_list, 1, _, _)
+21: (set_param, z, _, _)
+22: (call, cab, 1, t10)
+23: (assign, k, t10, _)
+24: (param_list, 1, _, _)
+25: (set_param, k, _, _)
+26: (call, output, 1, t11)
+27: (halt, _, _, _)
+
+********** Código objeto **********
+
+cab:
+    0:	addi	$sp, $sp, 3
+    1:	mov	$s0, $a0
+    2:	lw	$t0, 0($s0)
+    3:	lw	$t1, 1($s0)
+    4:	add	$t2, $t0, $t1
+    5:	sw	$t2, 0($sp)
+    6:	nop	
+    7:	lw	$s1, 0($sp)
+    8:	mov	$a0, $s1
+    9:	out	$a0, 0
+    10:	lw	$s2, 0($sp)
+    11:	mov	$v0, $s2
+    12:	jr	$ra
+
+main:
+    13:	addi	$sp, $sp, 2
+    14:	in	$t0
+    15:	la	$s0, -2($sp)
+    16:	sw	$t0, 0($s0)
+    17:	nop	
+    18:	in	$t1
+    19:	sw	$t1, 1($s0)
+    20:	nop	
+    21:	la	$a1, -2($sp)
+    22:	jal	cab
+    23:	mov	$t2, $v0
+    24:	subi	$sp, $sp, 3
+    25:	sw	$t2, 0($sp)
+    26:	nop	
+    27:	lw	$s1, 0($sp)
+    28:	mov	$a0, $s1
+    29:	out	$a0, 0
+    30:	reset	
+    31:	halt	
+
+********** Código binário **********
+
+instructionRAM[0] = 32'b010111_00000000000000000000001110; 	// Jump to Main
+instructionRAM[1] = 32'b001011_00011_00011_0000000000000011; 	// addi
+instructionRAM[2] = 32'b100000_01000_01011_0000000000000000; 	// mov
+instructionRAM[3] = 32'b001111_01011_10101_0000000000000000; 	// lw
+instructionRAM[4] = 32'b001111_01011_10110_0000000000000001; 	// lw
+instructionRAM[5] = 32'b000000_10101_10110_10111_00000000000; 	// add
+instructionRAM[6] = 32'b010000_00011_10111_0000000000000000; 	// sw
+instructionRAM[7] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[8] = 32'b001111_00011_01100_0000000000000000; 	// lw
+instructionRAM[9] = 32'b100000_01100_00111_0000000000000000; 	// mov
+instructionRAM[10] = 32'b010110_00111_000000000000000000000; 	// out
+instructionRAM[11] = 32'b001111_00011_01101_0000000000000000; 	// lw
+instructionRAM[12] = 32'b100000_01101_00001_0000000000000000; 	// mov
+instructionRAM[13] = 32'b011011_00000_11111_0000000000000000; 	// jr
+instructionRAM[14] = 32'b001011_00011_00011_0000000000000010; 	// addi
+instructionRAM[15] = 32'b010101_00000_10101_0000000000000000; 	// in
+instructionRAM[16] = 32'b010100_00011_01011_1111111111111110; 	// la
+instructionRAM[17] = 32'b010000_01011_10101_0000000000000000; 	// sw
+instructionRAM[18] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[19] = 32'b010101_00000_10110_0000000000000000; 	// in
+instructionRAM[20] = 32'b010000_01011_10110_0000000000000001; 	// sw
+instructionRAM[21] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[22] = 32'b010100_00011_01000_1111111111111110; 	// la
+instructionRAM[23] = 32'b011010_00000000000000000000000001; 	// jal
+instructionRAM[24] = 32'b100000_00001_10111_0000000000000000; 	// mov
+instructionRAM[25] = 32'b001100_00011_00011_0000000000000011; 	// subi
+instructionRAM[26] = 32'b010000_00011_10111_0000000000000000; 	// sw
+instructionRAM[27] = 32'b100010_00000000000000000000000000; 	// nop
+instructionRAM[28] = 32'b001111_00011_01100_0000000000000000; 	// lw
+instructionRAM[29] = 32'b100000_01100_00111_0000000000000000; 	// mov
+instructionRAM[30] = 32'b010110_00111_000000000000000000000; 	// out
+instructionRAM[31] = 32'b011001_00000000000000000000000000; 	// reset
+instructionRAM[32] = 32'b011000_00000000000000000000000000; 	// halt
